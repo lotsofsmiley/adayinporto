@@ -5,8 +5,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $preco = $_POST['preco'];
     $fim = $_POST['fim'];
     $lim = $_POST['lim'];
+    $desc = $_POST['desc'];
 
-    if (empty($id) || empty($nome) || empty($preco) || empty($fim) || empty($lim)){
+    if (empty($id) || empty($nome) || empty($preco) || empty($fim) || empty($lim) || empty($desc)){
         echo "Todos os campos do formulário devem conter valores ";
         exit();
     }    
@@ -19,9 +20,10 @@ else{
 
 $sql = "UPDATE tour SET 
         nome='$nome' 
-        and preco_unit = '$preco' 
-        and fim_previsto = '$fim' 
-        and lim_pessoas = '$lim' 
+        , preco_unit = '$preco' 
+        , fim_previsto = '$fim' 
+        , lim_pessoas = '$lim' 
+        , descricao = '$desc'
         WHERE id_tour='$id'";
 
 if (!mysqli_query($conn,$sql)) {

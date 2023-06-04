@@ -1,15 +1,16 @@
-
-html{
-    scroll-behavior:smooth;
+html {
+    scroll-behavior: smooth;
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
 }
 
-*, ::after, ::before {
+*,
+::after,
+::before {
     box-sizing: inherit;
 }
 
@@ -20,7 +21,7 @@ a {
 :root {
     --dark-background-color: #0f1316;
     --medium-background-color: #666;
-    --light-background-color: #efefef ;
+    --light-background-color: #efefef;
 
     --contrast-color: rgba(68, 107, 140, 1);
     --alt-contrast-color: ;
@@ -30,38 +31,63 @@ a {
     --light-text-reverse-color: #ddd;
 }
 
-.header {
-    min-height: 100vh;
-    width: 100%;
-    background-image: linear-gradient(rgba(4,9,30,0.7), rgba(4,9,30,0.7)), url(../_images/porto2.png);
-    background-position: center;
-    background-size: cover;
-    position: relative;
+
+
+
+
+
+
+.insert-button,
+.edit-button,
+.delete-button,
+.return-button {
+    padding-inline: 0.5rem;
+    padding-block: 1rem;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 300;
+    color: black;
+    border-radius: 5px;
+    border: none;
+    width: 90px;
+    height: 30px;
+    margin-inline: 5px;
+    cursor: pointer;
 }
 
-h1{
+.insert-button {
+    background-color: #1c975d;
+}
+
+.edit-button {
+    background-color: #dba50f;
+}
+
+.delete-button {
+    background-color: #8b0000;
+}
+
+.return-button {
+    background-color: #0066ff;
+}
+
+h1 {
     font-size: 36px;
-    font-weight: 600;
+    font-weight: 300;
+    text-align: center;
+    
 }
 
-h3{
+h3 {
     text-align: center;
     font-weight: 600;
 }
 
-.company-title{
+.company-title {
     font-size: 30px;
-    font-weight: 200!important;
+    font-weight: 200 !important;
     color: #fff;
-    text-decoration: underline rgba(68, 107, 140, 1) ;
-}
-
-.paragraph-description{
-    color: #777;
-    font-size: 14px;
-    font-weight: 300;
-    line-height: 22px;
-    padding: 10px;
+    text-decoration: underline rgba(68, 107, 140, 1);
 }
 
 .noSelect {
@@ -80,35 +106,41 @@ h3{
 
 /********************************************* Navbar *********************************************/
 
-nav{
+header{
+    padding-top:1rem; 
+    background:black; 
+    color:white;
+}
+
+nav {
     display: flex;
     padding: 1% 6%;
     justify-content: space-between;
     align-items: center;
     width: 90%;
     transition: 0.3s ease-in-out;
-    z-index: 10; 
+    z-index: 10;
     background-color: var(--dark-background-color);
     box-shadow: 0 2px 2px rgba(1, 1, 1, 0.5);
-    margin-bottom: 3rem;
 }
 
-nav img{
+nav img {
     width: 150px;
 }
-.nav-links{
+
+.nav-links {
     flex: 1;
     text-align: right;
 }
 
-.nav-links ul li{
+.nav-links ul li {
     list-style: none;
     display: inline-block;
     padding: 3px 12px;
     position: relative;
 }
 
-.nav-links ul li::after{
+.nav-links ul li::after {
     content: '';
     width: 0%;
     height: 2px;
@@ -118,19 +150,19 @@ nav img{
     transition: 0.3s;
 }
 
-.nav-links ul li:hover::after{
+.nav-links ul li:hover::after {
     width: 100%;
 }
 
 
-.nav-links ul li a{
+.nav-links ul li a {
     color: #fff;
     text-decoration: none;
     font-size: 15px;
     font-weight: 300;
 }
 
-.text-box{
+.text-box {
     width: 90%;
     color: #fff;
     position: absolute;
@@ -140,17 +172,17 @@ nav img{
     text-align: center;
 }
 
-.text-box h1{
+.text-box h1 {
     font-size: 62px;
 }
 
-.text-box p{
+.text-box p {
     margin: 10px 0 40px;
     font-size: 14px;
     color: #fff;
 }
 
-.header-button{
+.header-button {
     display: inline-block;
     text-decoration: none;
     color: #fff;
@@ -161,359 +193,12 @@ nav img{
     position: relative;
 }
 
-.header-button:hover{
+.header-button:hover {
     border: 1px solid var(--contrast-color);
     background: var(--contrast-color);
     transition: 1s;
 }
 
-nav .fa{
+nav .fa {
     display: none;
-}
-
-@media(max-width: 700px){
-    .text-box h1{
-        font-size: 25px;
-    }
-    .nav-links ul li{
-        display: block;
-    }
-    .nav-links{
-        position: absolute;
-        background: var(--dark-background-color);
-        height: auto;
-        width: 200px;
-        top: 0;
-        right: -200px;
-        text-align: left;
-        transition: 1s;
-        border-bottom-left-radius: 20px;
-    }
-    nav .fa{
-        display: block;
-        color: #fff;
-        margin: 10px;
-        font-size: 22px;
-        cursor: pointer;
-    }
-    .nav-links ul{
-        padding: 30px;
-    }
-}
-
-/********************************************* About *********************************************/
-
-.about{
-    width: 85%;
-    margin: auto;
-    text-align: center;
-    padding-top: 100px;
-}
-
-
-
-/********************************************* Tours *********************************************/
-
-.tours{
-    width: 85%;
-    margin: auto;
-    text-align: center;
-    padding-top: 100px;
-}
-
-.tours-row{
-    margin-top: 5%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.tours-col{
-    flex-basis: 31%;
-    background: #fff3f3;
-    border-radius: 10px;
-    margin-bottom: 6%;
-    padding: 20px 12px;
-    box-sizing: border-box;
-    transition: 0.5s;
-}
-
-.tours-col:hover{
-    box-shadow: 0 0 20px 0px rgba(0,0,0,0.3);
-}
-
-.tours-img-col{
-    flex-basis: 28%;
-    border-radius: 10px;
-    margin-bottom: 5%;
-    position: relative;
-    overflow: hidden;
-    text-align: left;
-    padding: 20px 12px;
-    background: rgba(0,0,0,0.05);
-    transition: 0.5s;
-}
-
-
-.tour-image{
-    width: 100%;
-    border-radius: 10px;
-    display: block;
-}
-
-.tour-paragraph {
-    padding: 0!important;
-    margin-bottom: 15px;
-}
-
-.tour-title{
-    margin-top: 16px;
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-.tours-img-col:hover{
-    box-shadow: 0 0 20px 0px rgba(0,0,0,0.2);
-}
-
-.tour-buttonLink {
-        border: none;
-        border-radius: .3125rem;
-        color: #fff;
-        font-weight: 500;
-        text-decoration: none;
-        cursor: pointer;
-        text-align: center;
-        user-select: none;
-        -webkit-user-select: none;
-        transition: all .2s cubic-bezier(.22, .61, .36, 1);
-        display: inline-block;
-        padding: 12px 34px;
-        font-size: 13px;
-        background: var(--contrast-color);
-        position: relative;
-}
-        
-.tour-buttonLink:hover {
-    transform: translateY(-2px);
-}
-
-
-
-/*.tours-img-col h3{
-    width: 100%;
-    font-weight: 500;
-    color: #fff;
-    font-size: 18px;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    position: absolute;
-}
-
-.layer{
-    background: transparent;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: 0.5s;
-}
-
-.layer:hover{
-    background: rgba(0, 0, 0, 0.4)
-}*/
-
-@media(max-width: 700px){
-    .tours-row{
-        flex-direction: column;
-    }
-}
-
-/********************************************* Tours - Comments *********************************************/
-
-.comments-row{
-    margin-top: 5%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.comments-col{
-    flex-basis: 44%;
-    border-radius: 10px;
-    margin-bottom: 5%;
-    text-align: left;
-    background: rgba(0,0,0,0.05);
-    padding: 25px;
-    display: flex;
-}
-
-.comments-col img{
-    height: 40px;
-    margin-left: 5px;
-    margin-right: 30px;
-    border-radius: 50%;
-}
-
-.comments-col h3{
-    margin-top: 0;
-    
-}
-
-/********************************************* Footer *********************************************/
-
-.footer {
-    padding: 4.5rem 2rem;
-    background-color: var(--dark-background-color);
-    color: var(--light-text-reverse-color);
-    position: relative;
-    height: auto;
-}
-
-@media (min-width: 48.751rem) {
-    .footer {
-        -webkit-columns:2;
-        -moz-columns: 2;
-        column-count: 2
-    }
-    .footer-column {
-        margin: 2.5rem;
-    }
-    .footer-description {
-        padding-top: 2rem;
-    }
-    .footer-about {
-        margin-top: 0;
-        padding-left: 2rem;
-        padding-right: 2rem;
-    }
-    .footer-policies,
-    .footer-contact-phone,
-    .footer-contact-mail {
-        width: 20rem;
-    }
-}
-
-@media (max-width: 48.750em) {
-    .footer-column {
-        margin: 1rem;
-    }
-
-    .footer-description {
-        padding-top: 0;
-    }
-
-    .footer-about {
-        margin-top: 0;
-        padding-left: 0;
-        padding-right: 0;
-    }
-}
-
-
-.footer-title {
-    padding-bottom: 1.25rem;
-    margin-bottom: 1.5rem;
-    border-bottom: 1px solid hsla(0,0%,100%,.1);
-    color: #fff;
-    font-size: 1.125rem;
-    text-align: left;
-}
-
-.footer-column {
-    page-break-inside: avoid;
-    -webkit-column-break-inside: avoid;
-    -moz-column-break-inside: avoid;
-    break-inside: avoid;
-}
-
-.footer-description {
-    line-height: 2;
-    text-align: center;
-    opacity: .90;
-}
-
-.footer-policies, .footer-contact-phone, .footer-contact-mail {
-    display: block;
-    color: var(--light-text-reverse-color);
-    font-weight: 400;
-    text-decoration: none;
-    opacity: .75;
-}
-
-.social-platform {
-    text-decoration: none
-}
-
-.social-platform-icon {
-    width: 32px;
-    height: 32px;
-    color: #fff;
-    font-size: 2rem!important;
-    opacity: .25
-}
-
-.social-platform-icon .fa {
-    text-align: center
-}
-
-.fa {
-    font-weight: 400;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    display: inline-block;
-    font-style: normal;
-    font-feature-settings: normal;
-    font-variant: normal;
-    text-rendering: auto;
-    line-height: 1;
-}
-
-
-.social-platform:hover .social-platform-icon {
-    opacity: .6125
-}
-
-.footer-contact-icon {
-    padding-right: 20px;
-    font-size: 1rem!important
-}
-
-
-/********************************************* BackOffice *********************************************/
-
-
-.insert-button, .edit-button, .delete-button, .return-button {
-    padding-inline: 0.5rem;
-    padding-block: 1rem;
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 300;
-    color: black;
-    border-radius: 5px;
-    border: none;
-    width: 90px;
-    height:30px;
-    margin-inline: 5px;
-    cursor: pointer;
-}
-
-.insert-button {
-    background-color: #1c975d;
-}
-
-.edit-button {
-    background-color:#dba50f;
-}
-
-.delete-button {
-    background-color:#8b0000;
-}
-
-.return-button {
-    background-color: #0066ff;
-}
-
-.form-input {
-
 }
