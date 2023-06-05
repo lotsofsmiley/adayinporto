@@ -1,7 +1,11 @@
 <?php
 $showdep = "SELECT * FROM tour ORDER BY nome";
 $show = mysqli_query($conn, $showdep);
-$row = mysqli_fetch_array($show);
+if (mysqli_num_rows($show) > 0) {
+    $row = mysqli_fetch_array($show);
+} else {
+    $row = null; // Set $row to null if no rows are returned
+}
 ?>
 
 <style>
@@ -25,7 +29,15 @@ $row = mysqli_fetch_array($show);
 
 <a href="./?p=11" class="insert-button">Inserir Tour</a>
 <a id="delLink" disabled><i class="fa-regular fa-trash-can fa-2xl" onclick="confirmDelete(<?php echo $row['id_tour']; ?>)"></i></a>
-<?php echo '<a href="./?p=15&id=' . $row['id_tour'] . '&operacao=editar" id="editLink" disabled><i class="fa-regular fa-pen-to-square fa-2xl"></i></a>' ?>
+
+<?php
+if ($row !== null && isset($row['id_tour'])) {
+    $editLink = './?p=15&id=' . $row['id_tour'] . '&operacao=editar';
+} else {
+    $editLink = '#'; // Set a default value if $row is null or 'id_tour' is not set
+}
+ //echo '<a href="./?p=15&id=' . $row['id_tour'] . '&operacao=editar" id="editLink" disabled><i class="fa-regular fa-pen-to-square fa-2xl"></i></a>'
+    echo '<a href="' . $editLink . '" id="editLink" disabled><i class="fa-regular fa-pen-to-square fa-2xl"></i></a>' ?>
 
 <table class="table-hover" style="width:100%; font-size: 20px; margin-top: 1rem; padding-top: 1rem;">
     <thead>
@@ -38,18 +50,23 @@ $row = mysqli_fetch_array($show);
     </thead>
     <tbody>
         <?php
-        do {
-        ?>
-            <tr id="tr_<?php echo $row['id_tour']; ?>" onclick="storeID(<?php echo $row['id_tour']; ?>)">
-                <?php
-                echo "<td>" . $row['nome'] . "</td>";
-                echo "<td>" . $row['preco_unit'] . "</td>";
-                echo "<td>" . $row['fim_previsto'] . "</td>";
-                echo "<td>" . $row['lim_pessoas'] . "</td>";
-                ?>
-            </tr>
-        <?php
+        if ($row !== null) {
+            do {
+            ?>
+                <tr id="tr_<?php echo $row['id_tour']; ?>" onclick="storeID(<?php echo $row['id_tour']; ?>)">
+                    <?php
+                    echo "<td>" . $row['nome'] . "</td>";
+                    echo "<td>" . $row['preco_unit'] . "</td>";
+                    echo "<td>" . $row['fim_previsto'] . "</td>";
+                    echo "<td>" . $row['lim_pessoas'] . "</td>";
+                    ?>
+                </tr>
+            <?php
         } while ($row = mysqli_fetch_assoc($show));
+        } else {
+            // Handle case where no rows are returned
+            echo "<tr><td colspan='4'>Não foram encontrados registos.</td></tr>";
+        }
         ?>
     </tbody>
 </table>

@@ -8,7 +8,7 @@ $op = 1;
 if (isset($_GET['p']))
     $op = $_GET['p'];
 
-require('./scripts/db/connect.php');
+require('../assets/scripts/db/connect.php');
 
 
 ?>
