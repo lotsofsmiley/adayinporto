@@ -1,18 +1,21 @@
 <?php
-if (isset($_POST['nome'])) {
+if (isset($_POST['name'])) {
     $id = $_POST['id'];
-    $nome = $_POST['nome'];
-    $preco = $_POST['preco'];
-    $fim = $_POST['fim'];
+    $name = $_POST['name'];
+    $price = $_POST['price'];
+    $end = $_POST['end'];
     $lim = $_POST['lim'];
     $desc = $_POST['desc'];
 
-    $checkdb = "SELECT * FROM tour WHERE nome='$nome'";
+    $name = mysqli_real_escape_string($conn, $name);
+    $desc = mysqli_real_escape_string($conn, $desc);
+
+    $checkdb = "SELECT * FROM tour WHERE name='$name'";
     $result = mysqli_query($conn, $checkdb);
     if ($result && mysqli_num_rows($result) == 0) {
-        $sql = "INSERT INTO tour(nome, preco_unit, fim_previsto, lim_pessoas, descricao) VALUES('$nome', '$preco', '$fim', '$lim', '$desc')";
+        $sql = "INSERT INTO tour(name, price_unit, ending, tour_limit, description) VALUES('$name', '$price', '$end', '$lim', '$desc')";
         $regist = mysqli_query($conn, $sql);
-        if (!$result) {
+        if (!$regist) {
             echo "<p> Erro ao inserir registo. <br>" . mysqli_error($conn);
         } else {
             echo "<p> Registo inserido com sucesso. </p>";
@@ -25,6 +28,7 @@ if (isset($_POST['nome'])) {
 <style>
     p {
         display: inline-block;
+        font-size: 20px;
     }
 
     input {
@@ -32,28 +36,28 @@ if (isset($_POST['nome'])) {
     }
 </style>
 <div>
-    <h3 style="text-align:left;">Editar Departamento</h3>
+    <h3 style="text-align:left;">Inserir tour</h3>
     <hr>
     <form method="post">
         <div style="margin-top: 0.5rem; line-height: 2;">
             <div>
-                <p style="font-size: 20px;">Nome do tour</p>
-                <input type="text" placeholder="Enter Username.." name="nome" required>
+                <p>Nome do tour</p>
+                <input class="input-long-text" type="text" placeholder="Enter Username.." name="name" required>
             </div>
             <div>
-                <p style="font-size: 20px;">Preço Unitário</p>
-                <input type="number" placeholder="Enter Value.." name="preco" min="1" required>
+                <p>Preço Unitário</p>
+                <input type="number" placeholder="Enter Value.." name="price" min="1" required>
             </div>
             <div>
-                <p style="font-size: 20px;">Fim Previsto</p>
-                <input type="time" placeholder="Enter Value.." name="fim" required>
+                <p>Fim Previsto</p>
+                <input type="time" placeholder="Enter Value.." name="end" required>
             </div>
             <div>
-                <p style="font-size: 20px;">Limite Pessoas</p>
+                <p>Limite Pessoas</p>
                 <input type="number" placeholder="Enter Value.." min="1" name="lim" required>
             </div>
             <div>
-                <p style="font-size: 20px;">Descrição do Tour</p>
+                <p>Descrição do Tour</p>
             </div>
             <div>
                 <textarea name="desc" cols="50" rows="10" minlength="1" maxlength="500" required></textarea>
