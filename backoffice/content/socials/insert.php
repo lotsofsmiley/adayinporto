@@ -5,6 +5,10 @@ if (isset($_POST['category'])) {
     $val = $_POST['value'];
     $icon = $_POST['icon_class'];
 
+    $cat = mysqli_real_escape_string($conn, $cat);
+    $val = mysqli_real_escape_string($conn, $val);
+    $icon = mysqli_real_escape_string($conn, $icon);
+
     $checkdb = "SELECT * FROM social_media WHERE category='$cat'";
     $result = mysqli_query($conn, $checkdb);
     if ($result && mysqli_num_rows($result) == 0) {
@@ -31,13 +35,13 @@ if (isset($_POST['category'])) {
     }
 </style>
 <div>
-    <h3 style="text-align:left;">Editar rede social</h3>
+    <h3 style="text-align:left;">Inserir rede social</h3>
     <hr>
     <form method="post">
         <div style="margin-top: 0.5rem; line-height: 2;">
             <div>
                 <p>Categoria</p>
-                <input class="input-long-text" type="text" placeholder="Enter Category.." name="category" required>
+                <input class="input" type="text" placeholder="Enter Category.." name="category" required>
             </div>
             <div>
                 <p>Link</p>

@@ -32,7 +32,7 @@ if (!$result) {
 </style>
 <div>
 
-    <h3 style="text-align:left;">Editar rede social</h3>
+    <h3 style="text-align:left;">Editar Rede Social</h3>
     <hr>
     <form method="post" action="?p=74">
         <div style="margin-top: 0.5rem; line-height: 2;">

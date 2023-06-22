@@ -9,27 +9,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $val = mysqli_real_escape_string($conn, $val);
     $class = mysqli_real_escape_string($conn, $class);
 
-    if (empty($id) || empty($cat) || empty($val) || empty($class)){
-        echo "Todos os campos do formulário devem conter valores ";
-        exit();
-    }    
-}
-else{
-    echo " ERRO - Não foi possível executar a operação editar. ";
-    exit();
-}
+    $checkdb = "SELECT * FROM social_media WHERE category='$cat'";
+    $result = mysqli_query($conn, $checkdb);
+    if ($result && mysqli_num_rows($result) == 0) {
+        $sql = "UPDATE social_media SET 
+                    category = '$cat'
+                    , value = '$val'
+                    , icon_class = '$class'
+                    WHERE id = '$id'";
 
-
-$sql = "UPDATE social_media SET 
-        category = '$cat'
-        , value = '$val'
-        , icon_class = '$class'
-        WHERE id = '$id'";
-
-if (!mysqli_query($conn,$sql)) {
-    echo " ERRO - Falha ao executar o comando: \"$sql\" <br>". mysqli_error($conn);
+        $result = mysqli_query($conn, $sql);
+        if (!$result) {
+            die("echo '<p> Erro ao editar registo. <br>' . mysqli_error($conn)");
+        } else {
+            header("location: ./?p=7");
+            exit();
+        }
+    } else
+        die("<p> Esse registo já existe. </p>");
 }
-else{
-        header('location: ./?p=7');
-}
-?>

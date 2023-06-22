@@ -27,7 +27,7 @@ if (mysqli_num_rows($show) > 0) {
 <p>Manutenção das redes sociais no site.</p>
 <br>
 
-<a href="./?p=71" class="insert-button">Inserir Tour</a>
+<a href="./?p=71" class="insert-button">Inserir Rede Social</a>
 <a id="delLink" disabled><i class="fa-regular fa-trash-can fa-2xl" onclick="confirmDelete(<?php echo $row['id']; ?>)"></i></a>
 
 <?php

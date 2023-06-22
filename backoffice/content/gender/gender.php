@@ -1,6 +1,6 @@
 <?php
-$showtour = "SELECT * FROM tour ORDER BY name";
-$show = mysqli_query($conn, $showtour);
+$showsoc = "SELECT * FROM gender ORDER BY id";
+$show = mysqli_query($conn, $showsoc);
 if (mysqli_num_rows($show) > 0) {
     $row = mysqli_fetch_array($show);
 } else {
@@ -23,16 +23,16 @@ if (mysqli_num_rows($show) > 0) {
     }
 </style>
 
-<h2>Tabela Tour - Primária</h2>
-<p>Manutenção dos tours no site.</p>
+<h2>Tabela Gender - Primária</h2>
+<p>Manutenção da table gender.</p>
 <br>
 
-<a href="./?p=11" class="insert-button">Inserir Tour</a>
+<a href="./?p=61" class="insert-button">Inserir Género</a>
 <a id="delLink" disabled><i class="fa-regular fa-trash-can fa-2xl" onclick="confirmDelete(<?php echo $row['id']; ?>)"></i></a>
 
 <?php
 if ($row !== null && isset($row['id'])) {
-    $editLink = './?p=15&id=' . $row['id'] . '&operation=editar';
+    $editLink = './?p=65&id=' . $row['id'] . '&operation=editar';
 } else {
     $editLink = null;
 }
@@ -41,10 +41,8 @@ echo '<a href="' . $editLink . '" id="editLink" disabled><i class="fa-regular fa
 <table class="table-hover" style="width:100%; font-size: 20px; margin-top: 1rem; padding-top: 1rem;">
     <thead>
         <tr>
-            <th scope="col" style="text-align: left; width:55%; border-bottom: solid 1px grey; border-collapse: collapse;">Tour</th>
-            <th scope="col" style="text-align: left; width:15%; border-bottom: solid 1px grey; border-collapse: collapse;">Preço(unit)</th>
-            <th scope="col" style="text-align: left; width:15%; border-bottom: solid 1px grey; border-collapse: collapse;">Fim Previsto</th>
-            <th scope="col" style="text-align: left; width:15%; border-bottom: solid 1px grey; border-collapse: collapse;">Limite Pessoas</th>
+            <th scope="col" style="text-align: left; width:40%; border-bottom: solid 1px grey; border-collapse: collapse;">ID</th>
+            <th scope="col" style="text-align: left; width:60%; border-bottom: solid 1px grey; border-collapse: collapse;">Descrição</th>
         </tr>
     </thead>
     <tbody>
@@ -54,10 +52,8 @@ echo '<a href="' . $editLink . '" id="editLink" disabled><i class="fa-regular fa
         ?>
                 <tr id="tr_<?php echo $row['id']; ?>" onclick="storeID(<?php echo $row['id']; ?>)">
                     <?php
-                    echo "<td>" . $row['name'] . "</td>";
-                    echo "<td>" . $row['price_unit'] . "</td>";
-                    echo "<td>" . $row['ending'] . "</td>";
-                    echo "<td>" . $row['tour_limit'] . "</td>";
+                    echo "<td>" . $row['id'] . "</td>";
+                    echo "<td>" . $row['description'] . "</td>";
                     ?>
                 </tr>
         <?php
@@ -92,7 +88,7 @@ echo '<a href="' . $editLink . '" id="editLink" disabled><i class="fa-regular fa
     function enableButtons() {
         document.getElementById("delLink").removeAttribute("disabled");
         document.getElementById("editLink").removeAttribute("disabled");
-        document.getElementById("editLink").href = './?p=15&id=' + encodeURIComponent(selectedID) + '&operation=editar';
+        document.getElementById("editLink").href = './?p=65&id=' + encodeURIComponent(selectedID) + '&operation=editar';
     }
 
     function disableButtons() {
@@ -104,7 +100,7 @@ echo '<a href="' . $editLink . '" id="editLink" disabled><i class="fa-regular fa
         var selectedID = document.querySelector('.selected').id;
         selectedID = selectedID.split("_")[1];
         if (confirm("Tem a certeza?")) {
-            var deleteURL = './?p=12&id=' + encodeURIComponent(selectedID) + '&operation=eliminar';
+            var deleteURL = './?p=62&id=' + encodeURIComponent(selectedID) + '&operation=eliminar';
             window.location.href = deleteURL;
         }
     }
