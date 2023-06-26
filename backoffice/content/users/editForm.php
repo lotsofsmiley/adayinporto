@@ -15,9 +15,10 @@ $result = mysqli_query($conn, $sql);
 
 if (!$result) {
     echo 'Falha na consulta: ' . mysqli_error($conn);
-} else
+} else {
+    
+}
     $row = mysqli_fetch_assoc($result);
-
 
 ?>
 <style>
@@ -37,35 +38,60 @@ if (!$result) {
     <form method="post" action="?p=14">
         <div style="margin-top: 0.5rem; line-height: 2;">
             <div>
-                <p>ID</p>
-                <input type="text" placeholder="Enter ID.." name="id" value="<?= $row['id'] ?>" readonly>
-            </div>
-            <div>
                 <p>Nome</p>
-                <input class="input-long-text" type="text" placeholder="Enter Tour name.." name="name" value="<?= $row['name'] ?>" required>
+                <input class="input-long-text" type="text" placeholder="Enter Name.." name="name" value="<?= $row['tour_limit'] ?>" required>
             </div>
             <div>
-                <p>Preço Unitário</p>
-                <input type="number" placeholder="Enter Value.." name="price" min="1" value="<?= $row['price_unit'] ?>" required>
+                <p>Email</p>
+                <input class="input-long-text" id="email" type="email" placeholder="Enter Email.." name="email" value="<?= $row['tour_limit'] ?>" required>
             </div>
             <div>
-                <p>Fim Previsto</p>
-                <input type="time" placeholder="Enter Value.." name="end" value="<?= $row['ending'] ?>" required>
+                <p>Nº Telemóvel</p>
+                <input type="tel" placeholder="Enter Phone Number.." name="phone" value="<?= $row['tour_limit'] ?>" required>
             </div>
             <div>
-                <p>Limite Pessoas</p>
-                <input type="number" placeholder="Enter Value.." name="lim" min="1" value="<?= $row['tour_limit'] ?>" required>
+                <p>Nacionalidade</p>
+                <input type="text" placeholder="Enter Nacionality.." name="nacionality" value="<?= $row['tour_limit'] ?>" required>
             </div>
             <div>
-                <p>Descrição do Tour</p>
+                <p>Data de nascimento</p>
+                <input type="date" placeholder="Enter Birthdate.." name="bdate" value="<?= $row['tour_limit'] ?>" required>
             </div>
             <div>
-                <textarea name="desc" cols="50" rows="10" minlength="1" maxlength="500" height="100px" style="resize:none" required> <?php echo $row['description'] ?> </textarea>
+                <p>Imagem de perfil</p>
+                <input type="file" placeholder="Insert Image.." name="image" value="<?= $row['tour_limit'] ?>" value="">
             </div>
-            <div style="margin-top: 0.5rem;">
-                <input class="edit-button" style="padding: 0.5rem; width:15%!important;" type="submit" value="Editar">
-                <a href="?p=1"><input class="return-button" style="width:15%!important; padding: 0.5rem;" type="button" value="Voltar"></a>
+            <div>
+                <p>Género</p>
+                <select name="gender" required>
+                    <?php
+                    $showdesc = "SELECT * FROM gender order by id;";
+                    if ($show = mysqli_query($conn, $showdesc))
+                        while ($row = mysqli_fetch_assoc($show))
+                            echo "<option value='" . $row['id'] . "'>" . $row['description'] . "</option>";
+                    ?>
+                </select>
+            </div>
+            <div>
+                <p>Role</p>
+                <select name="role" required>
+                    <?php
+                    $showrole = "SELECT * FROM role order by id;";
+                    if ($show = mysqli_query($conn, $showrole))
+                        while ($row = mysqli_fetch_assoc($show))
+                            echo "<option value='" . $row['id'] . "'>" . $row['name'] . "</option>";
+                    ?>
+                </select>
+            </div>
+            <div>
+                <p>Password</p>
+                <input class="input-long-text" type="password" placeholder="Enter Password.." value="<?= $row['tour_limit'] ?>" name="password" required>
             </div>
         </div>
-    </form>
+        <div style="margin-top: 0.5rem;">
+            <input class="edit-button" style="padding: 0.5rem; width:15%!important;" type="submit" value="Editar">
+            <a href="?p=1"><input class="return-button" style="width:15%!important; padding: 0.5rem;" type="button" value="Voltar"></a>
+        </div>
+</div>
+</form>
 </div>

@@ -239,6 +239,7 @@ nav .fa{
     padding: 20px 12px;
     box-sizing: border-box;
     transition: 0.5s;
+
 }
 
 .tours-col:hover{
@@ -295,6 +296,7 @@ nav .fa{
         font-size: 13px;
         background: var(--contrast-color);
         position: relative;
+        margin-top: 15px;
 }
         
 .tour-buttonLink:hover {
@@ -383,8 +385,12 @@ nav .fa{
     .footer-column {
         margin: 2.5rem;
     }
-    .footer-description {
-        padding-top: 2rem;
+    .logo-container {
+        width: 75%;
+        margin-inline: 12.5%;
+    }
+    .nav-logo-container {
+        width: 300px;
     }
     .footer-about {
         margin-top: 0;
@@ -402,17 +408,21 @@ nav .fa{
     .footer-column {
         margin: 1rem;
     }
-
-    .footer-description {
-        padding-top: 0;
-    }
-
     .footer-about {
         margin-top: 0;
         padding-left: 0;
         padding-right: 0;
     }
+    .logo-container {
+        width: 100%;
+        margin-inline: 0;
+    }
+    .nav-logo-container {
+        width: 200px;
+    }
+
 }
+
 
 
 .footer-title {
@@ -481,4 +491,18 @@ nav .fa{
 .footer-contact-icon {
     padding-right: 20px;
     font-size: 1rem!important
+}
+
+.logo-image {
+    object-fit: contain;
+    max-width: 100%;
+    max-height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    height: auto;
+}
+
+.nav-logo-container {
+    margin-top: 10px;
 }

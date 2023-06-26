@@ -22,7 +22,7 @@ if (isset($_POST['name'])) {
             header("location: ./?p=1");
         }
     } else
-        echo "<p> Esse tour já existe. </p>";
+        echo "<p> Esse registo já existe. </p>";
 }
 ?>
 <style>

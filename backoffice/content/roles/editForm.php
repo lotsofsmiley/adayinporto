@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     echo "Erro, pedido inválido";
     exit();
 }
-$sql = "SELECT * FROM social_media WHERE id = '$id' ";
+$sql = "SELECT * FROM role WHERE id = '$id' ";
 $result = mysqli_query($conn, $sql);
 
 if (!$result) {
@@ -32,30 +32,48 @@ if (!$result) {
 </style>
 <div>
 
-    <h3 style="text-align:left;">Editar Rede Social</h3>
+    <h3 style="text-align:left;">Editar Role</h3>
     <hr>
-    <form method="post" action="?p=74">
+    <form method="post" action="?p=54">
         <div style="margin-top: 0.5rem; line-height: 2;">
             <div>
                 <p>ID</p>
                 <input type="text" placeholder="Enter ID.." name="id" value="<?= $row['id'] ?>" readonly>
             </div>
             <div>
-                <p>Categoria</p>
-                <input class="input-long-text" type="text" placeholder="Enter Category.." name="category" value="<?= $row['category'] ?>" required>
+                <p>Nome</p>
+                <input class="input-long-text" type="text" placeholder="Enter Name.." name="name" value="<?= $row['name'] ?>" required>
+            </div>
+                        <div>
+                <p>Permissões</p>
             </div>
             <div>
-                <p>Link</p>
-                <input class="input-long-text" type="text" placeholder="Enter Link.." name="value" value="<?= $row['value'] ?>" required>
-            </div>
-            <div>
-                <p>Classe do Ícone</p>
-                <input class="input-long-text" type="text" placeholder="Enter Class.." name="icon_class" value="<?= $row['icon_class'] ?>" required>
+                <?php
+                $query = "SELECT * FROM permission ORDER BY id;";
+                if ($show = mysqli_query($conn, $query)) {
+                    $rolePermissions = array();
+                    while ($row = mysqli_fetch_assoc($show)) {
+                        $permissionId = $row['id'];
+                        $checked = '';
+
+                        $permissionQuery = "SELECT COUNT(*) AS count FROM role_permission WHERE role = '$id' AND permission = '$permissionId';";
+                        $permissionResult = mysqli_query($conn, $permissionQuery);
+                        $permissionRow = mysqli_fetch_assoc($permissionResult);
+
+                        if ($permissionRow['count'] > 0) {
+                            $checked = 'checked';
+                        }
+
+                        echo "<input type='checkbox' name='permissionlist[]' value='" . $permissionId . "' $checked>" . $row['description'] . "</input> <br>";
+                    }
+                } else {
+                    echo "Não foram encontrados registos.";
+                }?>
             </div>
         </div>
         <div style="margin-top: 0.5rem;">
             <input class="edit-button" style="padding: 0.5rem; width:15%!important;" type="submit" value="Editar">
-            <a href="?p=7"><input class="return-button" style="width:15%!important; padding: 0.5rem;" type="button" value="Voltar"></a>
+            <a href="?p=5"><input class="return-button" style="width:15%!important; padding: 0.5rem;" type="button" value="Voltar"></a>
         </div>
     </form>
 </div>

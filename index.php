@@ -21,13 +21,29 @@ require('./assets/scripts/db/connect.php');
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/ce285c7720.js" crossorigin="anonymous"></script>
+    <script src="path/to/jquery.min.js"></script>
+    <script>
+        function createXMLHttpRequest() {
+            if (window.XMLHttpRequest) {
+                return new XMLHttpRequest();
+            } else if (window.ActiveXObject) {
+                return new ActiveXObject("Microsoft.XMLHTTP");
+            } else {
+                console.error("XMLHttpRequest is not supported by this browser.");
+                return null;
+            }
+        }
+    </script>
 </head>
 
 <body>
     <a id="header"></a>
     <section class="header">
         <nav class="navbar" id="navbar">
-            <a class="company-title noSelect" href="./?p=0">aDayinPorto</a>
+            <!--<a class="company-title noSelect" href="./?p=0">aDayinPorto</a>-->
+            <div class="nav-logo-container">
+                <img src="./resources/_images/full_nobg_logo.png" href="./?p=0" alt="aDayinDouro" class="logo-image noSelect">
+            </div>
             <div class="nav-links" id="navLinks">
                 <i class="fa fa-times" onclick="closemenu()"></i>
                 <ul id="menu">
@@ -39,7 +55,7 @@ require('./assets/scripts/db/connect.php');
                     <li><a class="noSelect" href="./?p=3">CONTACT</a></li>
                     <li><a class="noSelect" href="./?p=6">FAQ's</a></li>
                     <li></li>
-                    <li><a class="noSelect" href="./?p=4">LOGIN</a></li>
+                    <li><a class="noSelect" href="./client/login/login.php">LOGIN</a></li>
                     <li><a class="button" href="./?p=5">logout</a></li>
                 </ul>
             </div>
@@ -64,10 +80,6 @@ require('./assets/scripts/db/connect.php');
 
             case 3:
                 include("./contact/index.php");
-                break;
-
-            case 4:
-                include("./login/login.php");
                 break;
 
             case 5:

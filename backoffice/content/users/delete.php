@@ -12,17 +12,17 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     exit();
 }
 
-$sql = "SELECT * FROM tour WHERE id = '$id'";
+$sql = "SELECT * FROM user WHERE id = '$id'";
 $resultado = mysqli_query($conn, $sql);
 
 if (!$resultado) {
     echo 'Falha na consulta: ' . mysqli_error($conn);
 } else {
-    $sql = "DELETE FROM tour WHERE id ='$id'";
+    $sql = "DELETE FROM user WHERE id ='$id'";
     if (!mysqli_query($conn, $sql)) {
         echo "ERRO - Falha ao executar o comando: \"$sql\" <br>" . mysqli_error($conn);
     } else {
-        header('Location: ./?p=1');
+        header('Location: ./?p=2');
         exit();
     }
 }

@@ -1,28 +1,68 @@
+<head>
+    <script src="path/to/jquery.min.js"></script>
+</head>
 <?php
 if (isset($_POST['name'])) {
-    $id = $_POST['id'];
     $name = $_POST['name'];
-    $price = $_POST['price'];
-    $end = $_POST['end'];
-    $lim = $_POST['lim'];
-    $desc = $_POST['desc'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $nacionality = $_POST['nacionality'];
+    $bdate = $_POST['bdate'];
+
+    if (isset($_POST['image']['name'])) {
+        $image = $_POST['image']['name'];
+        $tempimage = $_POST['image']['tmp_name'];
+    } else {
+        $image = '';
+        $tempimage = '';
+    }
+
+    $gender = $_POST['gender'];
+    $role = $_POST['role'];
+    $password = $_POST['password'];
 
     $name = mysqli_real_escape_string($conn, $name);
-    $desc = mysqli_real_escape_string($conn, $desc);
+    $email = mysqli_real_escape_string($conn, $email);
+    $nacionality = mysqli_real_escape_string($conn, $nacionality);
+    $bdate = mysqli_real_escape_string($conn, $bdate);
+    $image = mysqli_real_escape_string($conn, $image);
+    $tempimage = mysqli_real_escape_string($conn, $tempimage);
+    $role = mysqli_real_escape_string($conn, $role);
+    $password = mysqli_real_escape_string($conn, $password);
 
-    $checkdb = "SELECT * FROM tour WHERE name='$name'";
-    $result = mysqli_query($conn, $checkdb);
-    if ($result && mysqli_num_rows($result) == 0) {
-        $sql = "INSERT INTO tour(name, price_unit, ending, tour_limit, description) VALUES('$name', '$price', '$end', '$lim', '$desc')";
-        $regist = mysqli_query($conn, $sql);
-        if (!$regist) {
-            echo "<p> Erro ao inserir registo. <br>" . mysqli_error($conn);
-        } else {
-            echo "<p> Registo inserido com sucesso. </p>";
-            header("location: ./?p=1");
+    $folder = "../../../resources/_images" . $image;
+
+    $password = sha1($password);
+
+    $checkemail = "SELECT * FROM user WHERE email ='$email'";
+    $checkphone = "SELECT * FROM user WHERE phone ='$phone'";
+    $resultemail = mysqli_query($conn, $checkemail);
+    $resultphone = mysqli_query($conn, $checkphone);
+    if ($resultemail && mysqli_num_rows($resultemail) == 0) {
+        if ($resultphone && mysqli_num_rows($resultphone) == 0) {
+            if ($image !== '') {
+                $sql = "INSERT INTO user(name, email, phone_number, nacionality, birthdate, profile_image, verified, gender, role, password) 
+                VALUES('$name', '$email', '$phone', '$nacionality', '$bdate', '$image', '$verified', '$gender', '$role', '$password')";
+
+                move_uploaded_file($tempname, $folder);
+            } else {
+                $sql = "INSERT INTO user(name, email, phone_number, nacionality, birthdate, verified, gender, role, password) 
+                VALUES('$name', '$email', '$phone', '$nacionality', '$bdate', '$verified', '$gender', '$role', '$password')";
+            }
+
+            $regist = mysqli_query($conn, $sql);
+            if (!$regist) {
+                echo "<p> Erro ao inserir registo. <br>" . mysqli_error($conn);
+            } else {
+
+                echo "<p> Registo inserido com sucesso. </p>";
+                header("location: ./?p=2");
+            }
+        } else{
+            echo "<p> Esse nº de telemóvel já está registado. </p>";
         }
     } else
-        echo "<p> Esse tour já existe. </p>";
+        echo "<p> Esse email já está registado. </p>";
 }
 ?>
 <style>
@@ -36,36 +76,105 @@ if (isset($_POST['name'])) {
     }
 </style>
 <div>
-    <h3 style="text-align:left;">Inserir tour</h3>
+    <h3 style="text-align:left;">Inserir utilizador</h3>
     <hr>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <div style="margin-top: 0.5rem; line-height: 2;">
             <div>
-                <p>Nome do tour</p>
-                <input class="input-long-text" type="text" placeholder="Enter Username.." name="name" required>
+                <p>Nome</p>
+                <input class="input-long-text" type="text" placeholder="Enter Name.." name="name" required>
             </div>
             <div>
-                <p>Preço Unitário</p>
-                <input type="number" placeholder="Enter Value.." name="price" min="1" required>
+                <p>Email</p>
+                <input class="input-long-text" id="email" type="email" placeholder="Enter Email.." name="email" required>
             </div>
             <div>
-                <p>Fim Previsto</p>
-                <input type="time" placeholder="Enter Value.." name="end" required>
+                <p>Nº Telemóvel</p>
+                <input type="tel" placeholder="Enter Phone Number.." name="phone" required>
             </div>
             <div>
-                <p>Limite Pessoas</p>
-                <input type="number" placeholder="Enter Value.." min="1" name="lim" required>
+                <p>Nacionalidade</p>
+                <input type="text" placeholder="Enter Nacionality.." name="nacionality" required>
             </div>
             <div>
-                <p>Descrição do Tour</p>
+                <p>Data de nascimento</p>
+                <input type="date" placeholder="Enter Birthdate.." name="bdate" required>
             </div>
             <div>
-                <textarea name="desc" cols="50" rows="10" minlength="1" maxlength="500" required></textarea>
+                <p>Imagem de perfil</p>
+                <input type="file" placeholder="Insert Image.." name="image" value="">
+            </div>
+            <div>
+                <p>Género</p>
+                <select name="gender" required>
+                    <?php
+                    $showdesc = "SELECT * FROM gender order by id;";
+                    if ($show = mysqli_query($conn, $showdesc))
+                        while ($row = mysqli_fetch_assoc($show))
+                            echo "<option value='" . $row['id'] . "'>" . $row['description'] . "</option>";
+                    ?>
+                </select>
+            </div>
+            <div>
+                <p>Role</p>
+                <select name="role" required>
+
+                    <?php
+                    $showrole = "SELECT * FROM role order by id;";
+                    if ($show = mysqli_query($conn, $showrole))
+                        while ($row = mysqli_fetch_assoc($show))
+                            echo "<option value='" . $row['id'] . "'>" . $row['name'] . "</option>";
+                    ?>
+                </select>
+            </div>
+            <div>
+                <p>Password</p>
+                <input class="input-long-text" type="password" placeholder="Enter Password.." name="password" required>
             </div>
         </div>
         <div style="margin-top: 0.5rem;">
-            <input class="insert-button" style="padding: 0.5rem; width:15%!important;" type="submit" value="Inserir">
-            <a href="?p=1"><input class="return-button" style="width:15%!important; padding: 0.5rem;" type="button" value="Voltar"></a>
+            <input id="submit-button" class="insert-button" style="padding: 0.5rem; width:15%!important;" type="submit" value="Inserir">
+            <a href="?p=2   "><input class="return-button" style="width:15%!important; padding: 0.5rem;" type="button" value="Voltar"></a>
         </div>
     </form>
 </div>
+<script>
+    $(document).ready(function() {
+        var isEmailAvailable = false;
+
+        $('#email').blur(function() {
+            var email = $(this).val();
+            checkEmailAvailability(email);
+        });
+
+        function checkEmailAvailability(email) {
+            $.ajax({
+                url: 'insert_check_email.php',
+                method: 'POST',
+                data: {
+                    email: email
+                },
+                async: true,
+                success: function(response) {
+                    var availability = JSON.parse(response);
+                    var feedbackElement = $('#emailAvailability');
+                    feedbackElement.text(availability.message);
+                    feedbackElement.removeClass();
+                    feedbackElement.addClass(availability.status);
+
+                    isEmailAvailable = (availability.status === 'available');
+
+                    var submitButton = $('#submit-button');
+                    submitButton.prop('disabled', !isEmailAvailable);
+                }
+            });
+        }
+
+        $('#registrationForm').submit(function(event) {
+            if (!isEmailAvailable) {
+                event.preventDefault();
+                alert('Escolha outro email!');
+            }
+        });
+    });
+</script>

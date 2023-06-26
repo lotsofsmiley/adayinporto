@@ -1,6 +1,5 @@
 <?php
 if(isset($_POST['role'])) {
-    if (isset($_POST['permissionlist'])) {
         $role = $_POST['role'];
         $perm = $_POST['permissionlist'];
 
@@ -31,9 +30,6 @@ if(isset($_POST['role'])) {
             }
         } else
             echo "<p> Esse registo já existe. </p>";
-    } else {
-        echo "<p> Selecione alguma permissão. </p>";
-    }
 }
 ?>
 <style>

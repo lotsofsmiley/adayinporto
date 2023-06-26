@@ -14,7 +14,7 @@ if (isset($_POST['category'])) {
     if ($result && mysqli_num_rows($result) == 0) {
         $sql = "INSERT INTO social_media(category, value, icon_class) VALUES('$cat', '$val', '$icon')";
         $regist = mysqli_query($conn, $sql);
-        if (!$result) {
+        if (!$regist) {
             echo "<p> Erro ao inserir registo. <br>" . mysqli_error($conn);
         } else {
             echo "<p> Registo inserido com sucesso. </p>";
