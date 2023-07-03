@@ -19,11 +19,12 @@ a {
 
 :root {
     --dark-background-color: #0f1316;
+    --darkish-background-color: #151a1e;
     --medium-background-color: #666;
     --light-background-color: #efefef ;
 
     --contrast-color: rgba(68, 107, 140, 1);
-    --alt-contrast-color: ;
+    --alt-contrast-color: rgba(83, 129, 172, 1);
     --dark-text-color: var(--dark-background-color);
     --medium-text-color: var(--medium-background-color);
     --lighter-text-reverse-color: var(--light-background-color);
@@ -33,7 +34,7 @@ a {
 .header {
     min-height: 100vh;
     width: 100%;
-    background-image: linear-gradient(rgba(4,9,30,0.7), rgba(4,9,30,0.7)), url(../_images/porto2.png);
+    background-image: linear-gradient(rgba(4,9,30,0.7), rgba(4,9,30,0.7)), url(../_images/porto_home.png);
     background-position: center;
     background-size: cover;
     position: relative;
@@ -105,14 +106,17 @@ nav img{
     text-align: right;
 }
 
-.nav-links ul li{
+.nav-links ul .menu-sub-item{
+    padding: 3px 12px;
+}
+
+.nav-items {
     list-style: none;
     display: inline-block;
-    padding: 3px 12px;
     position: relative;
 }
 
-.nav-links ul li::after{
+.nav-links ul .menu-sub-item::after{
     content: '';
     width: 0%;
     height: 2px;
@@ -122,12 +126,12 @@ nav img{
     transition: 0.3s;
 }
 
-.nav-links ul li:hover::after{
+.nav-links ul .menu-sub-item:hover::after{
     width: 100%;
 }
 
 
-.nav-links ul li a{
+.nav-links ul .menu-sub-item a{
     color: #fff;
     text-decoration: none;
     font-size: 15px;
@@ -135,7 +139,7 @@ nav img{
 }
 
 .text-box{
-    width: 90%;
+    width: 75%;
     color: #fff;
     position: absolute;
     top: 50%;
@@ -175,11 +179,53 @@ nav .fa{
     display: none;
 }
 
-@media(max-width: 700px){
+@media(max-width: 1640px){
+    #backoffice{
+        display: none;
+    }
+}
+
+@media(min-width: 1200px){
+    #menu {
+        display: flex;
+        align-content: center;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .nav-profile {
+        list-style: none;
+        display: inline-block;
+        padding: 3px 12px;
+        position: relative;
+    }
+
+    .responsive-profile {
+        display:none;
+    }
+}
+
+@media(max-width: 1199px){
+
+    .nav-profile {
+        display:none;
+    }
+
+    .responsive-profile {
+        list-style: none;
+        position: relative;
+        display: flex;
+        padding: 10px;
+        text-decoration: none;
+        color: var(--light-background-color);
+        align-items: flex-end;
+        flex-direction: row;
+    }
+
     .text-box h1{
         font-size: 25px;
     }
-    .nav-links ul li{
+    .nav-links ul .menu-sub-item{
         display: block;
     }
     .nav-links{
@@ -205,10 +251,61 @@ nav .fa{
     }
 }
 
+.nav-profile img {
+    max-width: 100%;
+    height: auto;
+}
+
+.nav-profile .profile {
+    border-radius: 50%;
+    height: 2.5rem;
+    width: auto;
+    cursor: pointer;
+}
+
+.nav-profile .dropdown {
+    display: none;
+    width:125px;
+    height: auto;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 1;
+    background-color: var(--dark-background-color);
+    padding: 10px;
+    border: 2px solid var(--medium-background-color);
+    border-radius: 5%;
+}
+
+.nav-profile:hover .dropdown,
+.nav-profile:focus .dropdown {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.nav-profile .dropdown .sub-item {
+    list-style-type: none;
+}
+
+.nav-profile .dropdown a {
+    display: flex;
+    padding:10px;
+    text-decoration: none;
+    color: var(--light-background-color);
+    align-items: flex-end;
+    flex-direction: row;
+}
+
+.nav-profile .dropdown a:hover {
+    color: #ccc;
+}
+
+
 /********************************************* About *********************************************/
 
 .about{
-    width: 85%;
+    width: 75%;
     margin: auto;
     text-align: center;
     padding-top: 100px;
@@ -281,22 +378,22 @@ nav .fa{
 }
 
 .tour-buttonLink {
-        border: none;
-        border-radius: .3125rem;
-        color: #fff;
-        font-weight: 500;
-        text-decoration: none;
-        cursor: pointer;
-        text-align: center;
-        user-select: none;
-        -webkit-user-select: none;
-        transition: all .2s cubic-bezier(.22, .61, .36, 1);
-        display: inline-block;
-        padding: 12px 34px;
-        font-size: 13px;
-        background: var(--contrast-color);
-        position: relative;
-        margin-top: 15px;
+    border: none;
+    border-radius: .3125rem;
+    color: #fff;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: all .2s cubic-bezier(.22, .61, .36, 1);
+    display: inline-block;
+    padding: 12px 34px;
+    font-size: 13px;
+    background: var(--contrast-color);
+    position: relative;
+    margin-top: 15px;
 }
         
 .tour-buttonLink:hover {
@@ -376,7 +473,7 @@ nav .fa{
     height: auto;
 }
 
-@media (min-width: 48.751rem) {
+@media (min-width: 1200px) {
     .footer {
         -webkit-columns:2;
         -moz-columns: 2;
@@ -404,7 +501,7 @@ nav .fa{
     }
 }
 
-@media (max-width: 48.750em) {
+@media (max-width: 1199px) {
     .footer-column {
         margin: 1rem;
     }

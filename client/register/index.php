@@ -10,32 +10,36 @@
 </head>
 
 <body>
-    <div class="login">
-        <h1>Login</h1>
-        <form action="authenticate.php" method="post">
+    <div class="register">
+        <h1>Registar</h1>
+        <form action="register.php" method="post">
             <div class="input">
                 <label for="email">
                     <i class="fas fa-user"></i>
                 </label>
                 <input type="email" name="email" placeholder="Email" id="email" required>
             </div>
+
             <div class="input">
                 <label for="password">
                     <i class="fas fa-lock"></i>
                 </label>
                 <input type="password" name="password" placeholder="Password" id="password" required>
-
-                <a href="../recover_pass/recover.php">
-                    Recuperar palavra-passe.
-                </a>
             </div>
 
-            <div class="register-link">
-                <a href="../register/index.php">Não possui uma conta? Crie uma!</a>
+            <div class="input">
+                <label for="confpassword">
+                    <i class="fas fa-lock"></i>
+                </label>
+                <input type="password" name="confpassword" placeholder="Confirm Password.." id="confpassword" required>
+            </div>
+
+            <div class="login-link">
+                <a href="../login/login.php">Já possui uma conta?</a>
             </div>
             <div class="buttons">
                 <a class="return-button" href="../../index.php"><input class="return-button" type="button" value="Voltar"></a>
-                <input type="submit" value="Login">
+                <input type="submit" value="Registar">
             </div>
         </form>
     </div>

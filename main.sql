@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- Anfitrião:                    127.0.0.1
--- Versão do servidor:           10.4.27-MariaDB - mariadb.org binary distribution
+-- Versão do servidor:           10.4.21-MariaDB - mariadb.org binary distribution
 -- SO do servidor:               Win64
 -- HeidiSQL Versão:              11.3.0.6295
 -- --------------------------------------------------------
@@ -14,104 +14,128 @@
 
 
 -- A despejar estrutura da base de dados para db
-CREATE DATABASE IF NOT EXISTS `db` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+CREATE DATABASE IF NOT EXISTS `db` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `db`;
 
--- A despejar estrutura para tabela db.client
-CREATE TABLE IF NOT EXISTS `client` (
+-- A despejar estrutura para tabela db.appointment
+CREATE TABLE IF NOT EXISTS `appointment` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `phone_number` int(11) DEFAULT NULL,
-  `nacionality` varchar(50) DEFAULT NULL,
-  `birthdate` date DEFAULT NULL,
-  `creation_date` datetime DEFAULT current_timestamp(),
-  `profile_image` int(24) DEFAULT NULL,
-  `verified` int(1) DEFAULT NULL,
-  `display_language` int(3) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Tabela com os vários clientes.';
-
--- A despejar dados para tabela db.client: ~0 rows (aproximadamente)
-DELETE FROM `client`;
-/*!40000 ALTER TABLE `client` DISABLE KEYS */;
-/*!40000 ALTER TABLE `client` ENABLE KEYS */;
-
--- A despejar estrutura para tabela db.login
-CREATE TABLE IF NOT EXISTS `login` (
-  `email` varchar(255) NOT NULL,
-  `password` varchar(40) NOT NULL COMMENT 'Encriptação SHA1',
-  `role` varchar(1) DEFAULT NULL,
-  PRIMARY KEY (`email`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Tabela com os vários logins de clientes.';
-
--- A despejar dados para tabela db.login: ~0 rows (aproximadamente)
-DELETE FROM `login`;
-/*!40000 ALTER TABLE `login` DISABLE KEYS */;
-/*!40000 ALTER TABLE `login` ENABLE KEYS */;
-
--- A despejar estrutura para tabela db.marcacao
-CREATE TABLE IF NOT EXISTS `marcacao` (
-  `id_cliente` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
   `id_tour` int(11) NOT NULL,
-  `data_inicio` datetime NOT NULL,
-  `data_fim` datetime DEFAULT NULL,
-  `data_marc` datetime DEFAULT NULL COMMENT 'Data em q foi feita a marcação',
-  `data_pag` datetime DEFAULT NULL COMMENT 'Data em q foi realizado o pagamento.',
-  `data_cancel` datetime DEFAULT NULL COMMENT 'Data em q foi cancelado ( se for )',
-  `motivo` varchar(255) DEFAULT NULL COMMENT 'Motivo do cancelamento',
-  `desconto` int(11) DEFAULT NULL,
-  `n_pessoas` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_cliente`,`id_tour`,`data_inicio`),
+  `start` datetime NOT NULL COMMENT 'Horário do inicio da marcação.',
+  `ending` datetime DEFAULT NULL COMMENT 'Horário do fim da marcação.',
+  `book_date` datetime DEFAULT NULL COMMENT 'Data em q foi feita a marcação',
+  `payment_date` datetime DEFAULT NULL COMMENT 'Data em q foi realizado o pagamento.',
+  `cancel_date` datetime DEFAULT NULL COMMENT 'Data em q foi cancelado ( se for )',
+  `reason` varchar(255) DEFAULT NULL COMMENT 'Motivo do cancelamento',
+  `discount` int(11) DEFAULT NULL,
+  `number_people` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_user`,`id_tour`,`start`,`id`),
   KEY `FK_marcacao_tour` (`id_tour`),
-  CONSTRAINT `FK_marcacao_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `client` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_marcacao_tour` FOREIGN KEY (`id_tour`) REFERENCES `tour` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Tabela com as marcações feitas pelos clientes.';
+  CONSTRAINT `FK_marcacao_tour` FOREIGN KEY (`id_tour`) REFERENCES `tour` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_marcacao_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabela com as marcações feitas pelos clientes.';
 
--- A despejar dados para tabela db.marcacao: ~0 rows (aproximadamente)
-DELETE FROM `marcacao`;
-/*!40000 ALTER TABLE `marcacao` DISABLE KEYS */;
-/*!40000 ALTER TABLE `marcacao` ENABLE KEYS */;
+-- Exportação de dados não seleccionada.
+
+-- A despejar estrutura para tabela db.comment_tour
+CREATE TABLE IF NOT EXISTS `comment_tour` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_tour` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `post_date` date NOT NULL DEFAULT current_timestamp(),
+  `description` text NOT NULL,
+  `classification` int(1) NOT NULL,
+  PRIMARY KEY (`id_tour`,`id_user`),
+  UNIQUE KEY `id` (`id`),
+  KEY `FK_comment_tour_user` (`id_user`),
+  CONSTRAINT `FK_comment_tour_tour` FOREIGN KEY (`id_tour`) REFERENCES `tour` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_comment_tour_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabela com comentários feitos por clientes nos tours';
+
+-- Exportação de dados não seleccionada.
+
+-- A despejar estrutura para tabela db.faqs
+CREATE TABLE IF NOT EXISTS `faqs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` tinytext NOT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabela com as perguntas feitas regularmente';
+
+-- Exportação de dados não seleccionada.
+
+-- A despejar estrutura para tabela db.gender
+CREATE TABLE IF NOT EXISTS `gender` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `description` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COMMENT='Tabela com os géneros dos utilizadores.';
+
+-- Exportação de dados não seleccionada.
+
+-- A despejar estrutura para tabela db.language
+CREATE TABLE IF NOT EXISTS `language` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(50) DEFAULT NULL,
+  `description` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='Tabela com as linguagens disponíveis ao utilizador no site.';
+
+-- Exportação de dados não seleccionada.
+
+-- A despejar estrutura para tabela db.nav_content
+CREATE TABLE IF NOT EXISTS `nav_content` (
+  `id` int(11) NOT NULL,
+  `tag` varchar(50) DEFAULT NULL,
+  `value` varchar(255) DEFAULT NULL,
+  `visible` int(1) DEFAULT 0,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabela que respresenta os conteudos da navbar no site.';
+
+-- Exportação de dados não seleccionada.
 
 -- A despejar estrutura para tabela db.permission
 CREATE TABLE IF NOT EXISTS `permission` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `tag` varchar(50) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='Tabela com as permissões das roles.';
 
--- A despejar dados para tabela db.permission: ~0 rows (aproximadamente)
-DELETE FROM `permission`;
-/*!40000 ALTER TABLE `permission` DISABLE KEYS */;
-/*!40000 ALTER TABLE `permission` ENABLE KEYS */;
+-- Exportação de dados não seleccionada.
 
--- A despejar estrutura para tabela db.roles
-CREATE TABLE IF NOT EXISTS `roles` (
-  `role` varchar(2) NOT NULL,
+-- A despejar estrutura para tabela db.role
+CREATE TABLE IF NOT EXISTS `role` (
+  `id` int(1) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`role`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COMMENT='Tabela com as roles disponíveis ao utilizador.';
 
--- A despejar dados para tabela db.roles: ~0 rows (aproximadamente)
-DELETE FROM `roles`;
-/*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-/*!40000 ALTER TABLE `roles` ENABLE KEYS */;
+-- Exportação de dados não seleccionada.
 
 -- A despejar estrutura para tabela db.role_permission
 CREATE TABLE IF NOT EXISTS `role_permission` (
-  `role` varchar(2) NOT NULL,
-  `permission` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`role`,`permission`) USING BTREE,
-  KEY `FK__permissoes` (`permission`) USING BTREE,
-  CONSTRAINT `FK_role_permissao_roles` FOREIGN KEY (`role`) REFERENCES `roles` (`role`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_role_permission_permission` FOREIGN KEY (`permission`) REFERENCES `permission` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `role` int(1) NOT NULL,
+  `permission` int(11) NOT NULL,
+  PRIMARY KEY (`role`,`permission`),
+  KEY `FK_role_permission_permission` (`permission`),
+  CONSTRAINT `FK_role_permission_permission` FOREIGN KEY (`permission`) REFERENCES `permission` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_role_permission_role` FOREIGN KEY (`role`) REFERENCES `role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabela que indica as permissões que cada role tem atribuida.';
 
--- A despejar dados para tabela db.role_permission: ~0 rows (aproximadamente)
-DELETE FROM `role_permission`;
-/*!40000 ALTER TABLE `role_permission` DISABLE KEYS */;
-/*!40000 ALTER TABLE `role_permission` ENABLE KEYS */;
+-- Exportação de dados não seleccionada.
+
+-- A despejar estrutura para tabela db.social_media
+CREATE TABLE IF NOT EXISTS `social_media` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category` varchar(50) DEFAULT NULL,
+  `value` text DEFAULT NULL,
+  `icon_class` text DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COMMENT='Tabela com as redes sociais no footer do site.';
+
+-- Exportação de dados não seleccionada.
 
 -- A despejar estrutura para tabela db.tour
 CREATE TABLE IF NOT EXISTS `tour` (
@@ -119,18 +143,12 @@ CREATE TABLE IF NOT EXISTS `tour` (
   `name` varchar(200) DEFAULT NULL,
   `price_unit` int(11) DEFAULT NULL,
   `ending` time DEFAULT NULL,
-  `limit` int(11) DEFAULT NULL,
-  `description` varchar(4000) DEFAULT NULL,
+  `tour_limit` int(11) DEFAULT NULL,
+  `description` text DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Tabela com as várias experiências disponíveis.';
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COMMENT='Tabela com as várias experiências disponíveis.';
 
--- A despejar dados para tabela db.tour: ~2 rows (aproximadamente)
-DELETE FROM `tour`;
-/*!40000 ALTER TABLE `tour` DISABLE KEYS */;
-INSERT INTO `tour` (`id`, `name`, `price_unit`, `ending`, `limit`, `description`) VALUES
-	(11, 'a', 11, '16:27:00', 21, '11111'),
-	(12, 'b', 11, '16:28:00', 11, '1adaw');
-/*!40000 ALTER TABLE `tour` ENABLE KEYS */;
+-- Exportação de dados não seleccionada.
 
 -- A despejar estrutura para tabela db.tour_body
 CREATE TABLE IF NOT EXISTS `tour_body` (
@@ -141,12 +159,33 @@ CREATE TABLE IF NOT EXISTS `tour_body` (
   `subtitle` longtext DEFAULT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `FK_tour_body_tour` FOREIGN KEY (`id`) REFERENCES `tour` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabela com o body dos tours no site.';
 
--- A despejar dados para tabela db.tour_body: ~0 rows (aproximadamente)
-DELETE FROM `tour_body`;
-/*!40000 ALTER TABLE `tour_body` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tour_body` ENABLE KEYS */;
+-- Exportação de dados não seleccionada.
+
+-- A despejar estrutura para tabela db.user
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone_number` varchar(50) DEFAULT NULL,
+  `nacionality` varchar(50) DEFAULT NULL,
+  `birthdate` date DEFAULT NULL,
+  `creation_date` datetime DEFAULT current_timestamp(),
+  `profile_image` varchar(100) DEFAULT NULL,
+  `verified` int(1) DEFAULT NULL,
+  `display_language` int(3) DEFAULT 1,
+  `gender` int(1) DEFAULT NULL,
+  `role` int(1) DEFAULT NULL,
+  `password` varchar(40) DEFAULT NULL,
+  PRIMARY KEY (`id`,`email`),
+  KEY `FK_user_sex` (`gender`) USING BTREE,
+  KEY `FK_user_role` (`role`),
+  CONSTRAINT `FK_user_gender` FOREIGN KEY (`gender`) REFERENCES `gender` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_user_role` FOREIGN KEY (`role`) REFERENCES `role` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COMMENT='Tabela com os vários utilizadores.';
+
+-- Exportação de dados não seleccionada.
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;

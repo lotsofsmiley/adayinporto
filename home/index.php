@@ -1,64 +1,63 @@
+<?php
+$sql = "SELECT * FROM tour";
+$result = mysqli_query($conn, $sql);
+
+if (!$result) {
+    echo 'Falha na consulta: ' . mysqli_error($conn);
+    exit();
+}
+
+$tours = array();
+
+while ($row = mysqli_fetch_assoc($result)) {
+    $tours[] = $row;
+}
+
+?>
+
+<section class="header">
+
+</section>
+
+
 <section>
     <div class="text-box">
         <h1>Airbnb 2019 Douro Most Unique Experience</h1>
-        <p class="paragraph-description">Get ready to embark on a journey of discovery and passion with aDayinDouro. Founded in 2011 by visionary Manuel Guimarães,
-            a computer engineer with a passionate heart, this family-owned business is much more than just a company - it is a celebration of emotions and family bonds.<br>
-            Taste the authentic Douro Valleu with us to be part of the Most Authentic Access Experience by Airbnb in 2019!</p>
-        <a href="#tours" class="header-button">Our Tours</a>
+        <p class="paragraph-description">Prepare-se para embarcar numa viagem de descoberta e paixão com aDayinDouro. Fundada em 2011 pelo visionário Manuel Guimarães,
+            um engenheiro de computação com um coração apaixonado, esta empresa familiar é muito mais do que apenas uma empresa - é uma celebração de emoções e laços familiares.<br>
+            Prove connosco o autêntico Douro Valleu para fazer parte da Most Authentic Access Experience by Airbnb em 2019!</p>
+        <a href="#tours" class="header-button">Tours</a>
     </div>
 </section>
 
 <a id="about"></a>
 <section class="about">
-    <h1>About Us</h1>
-    <p class="paragraph-description">Manuel's life took an unexpected turn during the 2008 economic crisis. He faced difficulties but kept the flame of hope alive within him. It was in this moment of adversity that he found his true calling. Determined to create a bright future for his family, he started renting a room in his family home through Airbnb, opening doors to travelers thirsty for authentic experiences.
-
-        But it was in 2011 that true magic happened. Manuel created aDayinDouro, a company dedicated in creating wine experiences to Douro Valley, the most remarkable wine region in Portugal. They shared stories, laughter, and precious moments, creating bonds that transcended physical boundaries. Together, they discovered a new way to connect hearts and minds through hospitality.<br>
-
-        Manuel and his family's passion for the Douro Valley were a burning flame within them. Every corner, every vineyard, every flavor held a deep and emotionally captivating story. That's how the idea of offering personalized tours that went beyond a simple visit was born.<br>
-
-        Each tour by aDayinDouro is a total immersion in the wonders of the Douro Valley. From the picturesque vineyard-covered hills to the traditional wineries, each stop is an opportunity to fall in love with the rich history and culture of the region. But the true charm lies in the people - Manuel's family, with their warm smiles and generous hearts, guides every guest on a journey of deep connections and soul-touching moments, making them part of the family.<br>
-
-        Manuel and his family's story came to life when, in 2019, they were honored with the prestigious "Most Authentic Airbnb Experience of 2019" award. This recognition was the seal of approval for the passion and dedication they pour into each visit and reaffirmed that they were on the right path to creating unforgettable memories.
-
-        At aDayinDouro, every day is filled with love, connection, and a touch of magic. It is a family business where emotions overflow in every interaction, and every customer becomes part of the ever-evolving story. United by love and passion for the Douro Valley, Manuel, his family, and their passionate team are ready to share the most exciting journey of your life.<br>
-
-        Come join us and let yourself be swept away by the emotion as we discover together the essence of the Douro Valley, an experience that will touch your heart and awaken your senses. Welcome to aDayinDouro - where passion, discovery, and family bonds meet.</p>
+    <h1>Sobre nós</h1>
+    <p class="paragraph-description">A vida de Manuel segiu um rumo inesperado durante a crise econômica de 2008. Enfrentou dificuldades, mas manteve acesa dentro de si a chama da esperança. Foi nesse momento de adversidade que ele encontrou sua verdadeira vocação. Determinado a criar um futuro brilhante para sua família, ele começou a alugar um quarto na casa da sua família através do Airbnb, abrindo as portas para viajantes sedentos por experiências autênticas.
+        Mas foi em 2011 que a verdadeira magia aconteceu. Manuel criou a aDayinDouro, uma empresa dedicada a criar experiências vínicas no Vale do Douro, a região vinícola mais marcante de Portugal. Eles compartilharam histórias, momentos preciosos e diversão criando laços que transcenderam os limites físicos. Juntos, eles descobriram uma nova maneira de conectar corações e mentes por meio da hospitalidade.<br>
+        A paixão de Manuel e da sua família pelo Vale do Douro era uma chama acesa dentro deles. Cada canto, cada vinhedo, cada sabor continha uma história profunda e emocionalmente cativante. Foi assim que nasceu a ideia de oferecer passeios personalizados que fossem além de uma simples visita.<br>
+        Cada passeio da aDayinDouro é uma imersão total nas maravilhas do Vale do Douro. Das pitorescas colinas cobertas de vinhedos às tradicionais vinícolas, cada paragem é uma oportunidade para se apaixonar pela rica história e cultura da região. Mas o verdadeiro encanto está nas pessoas - a família de Manuel, com os seus sorrisos calorosos e corações generosos, guia cada hóspede em uma jornada de conexões profundas e momentos tocantes, tornando-os parte da família.<br>
+        A história de Manuel e sua família ganhou vida quando, em 2019, eles foram homenageados com o prestigioso prêmio "Most Authentic Airbnb Experience of 2019". Este reconhecimento foi o selo de aprovação pela paixão e dedicação que colocam em cada visita e reafirmaram que estavam no caminho certo para criar memórias inesquecíveis.
+        Com a aDayinDouro, todos os dias são repletos de amor, conexão e um toque de magia. É uma empresa familiar onde as emoções transbordam em cada interação e cada cliente se torna parte de uma história em constante evolução. Unidos pelo amor e paixão pelo Vale do Douro, Manuel, a sua família e a sua equipa apaixonada estão prontos para compartilhar a jornada mais emocionante de sua vida.<br>
+        Junte-se a nós e deixe-se levar pela emoção enquanto descobrimos juntos a essência do Vale do Douro, uma experiência que vai tocar o seu coração e despertar os seus sentidos. Bem-vindo ao aDayinDouro - onde a paixão, a descoberta e os laços familiares se encontram.</p>
 </section>
 
 <a id="tours"></a>
 <section class="tours">
-    <h1>Our Tours</h1>
-    <p class="paragraph-description">Here you are able to check our diferent wine tour options. According with your profile, personality and budget,
-        we can provide you with a life experience that you will never forget! Be part of our family by signing up for a wine tour below!</p>
+    <h1>Os nossos Tours</h1>
+    <p class="paragraph-description">Aqui pode conferir as nossas diferentes opções de passeios vínicos. De acordo com o seu perfil, personalidade e orçamento,
+        podemos proporcionar-lhe uma experiência de vida que nunca irá esquecer! Faça parte da nossa família inscrevendo-se para um tour de vinhos abaixo!</p>
 
     <div class="tours-row">
-        <div class="tours-img-col">
-            <img class="tour-image" src="resources/_images/tour1.png">
-            <h3 class="tour-title">Airbnb 2019 Douro Most Unique Access Experience</h3>
-            <p class="paragraph-description tour-paragraph">Embark on an exclusive and authentic Douro Valley experience.
-                Enjoy 11 wine tastings, private boat tours, visits to two wineries, and an exquisite lunch prepared by a renowned chef.
-                Immerse yourself in the region's rich culture, connect with charismatic locals, and learn about both table wines and the famous Port wine in a fun and engaging way.</p>
-            <a href="https://www.airbnb.pt/experiences/181572" class="tour-buttonLink">Check Tour</a>
-        </div>
-
-        <div class="tours-img-col">
-            <img class="tour-image" src="resources/_images/tour2.png">
-            <h3 class="tour-title">Eleven Wine Tastings, Wineries, Farm to Table Chef, Garden Lunch</h3>
-            <p class="paragraph-description tour-paragraph">Experience the Douro Valley like never before. Enjoy 11 wine tastings, exclusive visits to two wineries with the winemaker's
-                presentations, a chef's lunch, private boat tours, and authentic local encounters. No stress, 100% satisfaction guaranteed.
-                Discover the hidden treasures of the region and create unforgettable memories on this exceptional wine experience.</p>
-            <a href="https://www.airbnb.pt/experiences/716209" class="tour-buttonLink">Check Tour</a>
-        </div>
-
-        <div class="tours-img-col">
-            <img class="tour-image" src="resources/_images/tour3.png">
-            <h3 class="tour-title">Douro Valley in a convertible Mercedes</h3>
-            <p class="paragraph-description tour-paragraph">Experience the ultimate Douro Valley adventure in a luxurious convertible Mercedes E-Class.
-                Indulge in the best wines, gastronomy, and professional photo/video service. Cruise along the river, savor Port wines and local delicacies,
-                visit two wine local wine estates, and taste a Douro chef's lunch. Opt for authenticity and create unforgettable memories in the Douro.</p>
-            <a href="https://www.airbnb.pt/experiences/167283" class="tour-buttonLink">Check Tour</a>
-        </div>
+        <?php foreach ($tours as $tour) {
+            echo "
+                <div class='tours-img-col'>
+                        <img class='tour-image' src='resources/_images/" . $tour['image'] . "'>
+                        <h3 class='tour-title'>" . $tour['name'] . "</h3>
+                        <p class='tour-description'>" . $tour['description'] . "</p>
+                        <a href='./?p=21&id=" . $tour['id'] . "' class='tour-buttonLink'>Check Tour</a>
+                    </div>";
+        } ?>
     </div>
 </section>
 
@@ -69,8 +68,8 @@
             <img src="./resources/_images/full_nobg_logo.png" alt="ola" class="logo-image noSelect">
         </div>
         <div class="footer-description">
-            Get ready to embark on a journey of discovery and passion with aDayinDouro. Founded in 2011 by visionary Manuel Guimarães, a computer engineer with a passionate heart, this family-owned business is much more than just a company - it is a celebration of emotions and family bonds.<br>
-            Taste the authentic Douro Valleu with us to be part of the Most Authentic Access Experience by Airbnb in 2019!
+            Prepare-se para embarcar numa viagem de descoberta e paixão com aDayinDouro. Fundada em 2011 pelo visionário Manuel Guimarães, um engenheiro informático de coração apaixonado, esta empresa familiar é muito mais do que uma empresa - é uma celebração de emoções e laços familiares.<br>
+            Prove connosco o autêntico Douro Valleu para fazer parte da Most Authentic Access Experience by Airbnb em 2019!
         </div>
     </div>
 
@@ -79,7 +78,7 @@
             </div>-->
 
     <div class="footer-column footer-contact">
-        <h3 class="footer-title">Contact us!</h3>
+        <h3 class="footer-title">Contacte-nos!</h3>
         <a class="footer-contact-phone" target="_blank" href="tel:+351 916 541 852">
             <i class="footer-contact-icon fa fa-phone"></i>
             (+351) 916 541 852
@@ -92,7 +91,7 @@
     </div>
 
     <div class="footer-column footer-contact">
-        <h3 class="footer-title">Visit our social media!</h3>
+        <h3 class="footer-title">Visite as nossas redes sociais!</h3>
         <!--
         <a class="social-platform" target="_blank" href="https://www.tripadvisor.com/Attraction_Review-g189180-d4137824-Reviews-Taste_Porto_Food_Tours-Porto_Porto_District_Northern_Portugal.html">
             <i class="social-platform-icon fab fa-tripadvisor"></i>
@@ -100,8 +99,8 @@
         <a class="social-platform" target="_blank" href="">
             <i class="social-platform-icon fab fa-twitter"></i>
         </a>
-        <a class="social-platform" target="_blank" href="https://www.youtube.com/channel/UCWWG4QPG8QFUJVZHKcPjcHg">
-            <i class="social-platform-icon fab fa-youtube"></i>
+        <a class="social-platform" style="margin-right:5px;" target="_blank" href="https://www.youtube.com/channel/UCWWG4QPG8QFUJVZHKcPjcHg">
+            <i class="social-platform-icon fa fa-youtube"></i>
         </a>
         -->
         <a class="social-platform" target="_blank" href="https://www.facebook.com/adayinporto/">
@@ -110,5 +109,7 @@
         <a class="social-platform" target="_blank" href="https://www.instagram.com/adayindouro/">
             <i class="social-platform-icon fa fa-instagram"></i>
         </a>
+
+
     </div>
 </footer>

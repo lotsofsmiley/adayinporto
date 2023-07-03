@@ -30,12 +30,16 @@ if (isset($_POST['name'])) {
     $role = mysqli_real_escape_string($conn, $role);
     $password = mysqli_real_escape_string($conn, $password);
 
-    $folder = "../../../resources/_images" . $image;
+    $folder = "../../../resources/_images/" . $image;
+
+    var_dump($folder);
+    var_dump($image);
+    var_dump($tempimage);
 
     $password = sha1($password);
 
     $checkemail = "SELECT * FROM user WHERE email ='$email'";
-    $checkphone = "SELECT * FROM user WHERE phone ='$phone'";
+    $checkphone = "SELECT * FROM user WHERE phone_number ='$phone'";
     $resultemail = mysqli_query($conn, $checkemail);
     $resultphone = mysqli_query($conn, $checkphone);
     if ($resultemail && mysqli_num_rows($resultemail) == 0) {
@@ -56,7 +60,7 @@ if (isset($_POST['name'])) {
             } else {
 
                 echo "<p> Registo inserido com sucesso. </p>";
-                header("location: ./?p=2");
+                //header("location: ./?p=2");
             }
         } else{
             echo "<p> Esse nº de telemóvel já está registado. </p>";
