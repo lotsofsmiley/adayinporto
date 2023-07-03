@@ -1,0 +1,188 @@
+@import url(../resources/css/styles.css);
+
+.tour-header {
+    min-height: 70vh;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(../resources/_images/porto3.jpg);
+}
+
+.tours-text-box {
+    width: 75%;
+    color: #fff;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.tours-text-box h1 {
+    font-size: 62px;
+}
+
+.tours-text-box p {
+    margin: 10px 0 40px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.section-tours{
+    width: 90%;
+    margin: auto;
+    padding-top: 100px;
+    display: flex;
+}
+
+.tour-filter, .tour-tours {
+    padding: 10px;
+    display: block;
+}
+
+.tour-filter {
+    flex: 30%;
+}
+
+.tour-tours {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    text-align: center!important;
+}
+
+.tour-tours .tour-tour:hover {
+    background-color: var(--light-background-color);
+    border-radius: 25px;
+    transition: 0.3s;
+}
+
+.tour-tours .tour-tour {
+    padding-top: 10%;
+    padding: 5%;
+}
+
+.tour-tours .tour-row {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+    display: grid;
+}
+
+.tour-tours .tours-title {
+    margin-top: 16px;
+    margin-bottom: 15px;
+    color: var(--dark-text-color)
+}
+
+.tour-tours .tours-image {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+}
+
+.tour-tours .tours-img-col {
+    flex-basis: 28%;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    position: relative;
+    overflow: hidden;
+    padding: 20px 12px;
+    background: rgba(0, 0, 0, 0.05);
+    transition: 0.5s;
+}
+
+.tour-description{
+    padding: 0 !important;
+    color: #777;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 22px;
+    padding: 10px;
+}
+
+.tour-tours a {
+    text-decoration: none;
+}
+
+/*
+.tour-tours img {
+    height: 35%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    -o-object-position: center;
+    object-position: center;
+    position: absolute;
+    width: 25%;
+}
+
+.tour-tours .tours-image {
+    position: relative;
+    width: 100%;
+}
+
+.tour-tours .tour-tour {
+    color: #666;
+    color: var(--medium-text-color);
+    text-align: center;
+}*/
+
+
+.tour-text-box{
+    width: 100%;
+    color: #fff;
+    position: absolute;
+    top: 90%;
+    left: 2%;
+    text-align: left;
+}
+
+.tour-info {
+    border-bottom: 1px solid var(--medium-text-color);
+    padding: 2rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+.tour-data {
+    color: var(--medium-text-color);
+    display: inline-block;
+    font-size: 1.125rem;
+    margin-right: 3rem;
+    list-style: none;
+}
+
+.tour-regular {
+    display: flex;
+    margin-bottom: 5rem;
+    margin-top: 5rem;
+    position: relative;
+    margin: 2rem auto;
+    width: 72rem;
+}
+
+.tour-main {
+    /*margin-right: 2rem;*/
+    /*width: 50rem;*/
+    width: 70rem;
+}
+
+.introduction {
+    box-sizing: content-box;
+    line-height: 1.25;
+    margin: 0 auto;
+    max-width: 65rem;
+    padding: 3.75rem 0; 
+    text-align: left;
+    width: auto;
+}
+
+.introduction-title {
+    color: var(--medium-text-color);
+    margin-top: 1rem;
+}
+
+.introduction-body {
+    color: var(--light-text-color);
+    margin-top: 1rem;
+}
