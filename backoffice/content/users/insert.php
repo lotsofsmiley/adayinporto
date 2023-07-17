@@ -1,6 +1,3 @@
-<head>
-    <script src="path/to/jquery.min.js"></script>
-</head>
 <?php
 if (isset($_POST['name'])) {
     $name = $_POST['name'];
@@ -9,9 +6,9 @@ if (isset($_POST['name'])) {
     $nacionality = $_POST['nacionality'];
     $bdate = $_POST['bdate'];
 
-    if (isset($_POST['image']['name'])) {
-        $image = $_POST['image']['name'];
-        $tempimage = $_POST['image']['tmp_name'];
+    if (isset($_FILES['image']['name'])) {
+        $image = $_FILES['image']['name'];
+        $tempimage = $_FILES['image']['tmp_name'];
     } else {
         $image = '';
         $tempimage = '';
@@ -29,12 +26,9 @@ if (isset($_POST['name'])) {
     $tempimage = mysqli_real_escape_string($conn, $tempimage);
     $role = mysqli_real_escape_string($conn, $role);
     $password = mysqli_real_escape_string($conn, $password);
+    $verified = 1;
 
-    $folder = "../../../resources/_images/" . $image;
-
-    var_dump($folder);
-    var_dump($image);
-    var_dump($tempimage);
+    $folder = "../resources/_images/users/";
 
     $password = sha1($password);
 
@@ -48,7 +42,7 @@ if (isset($_POST['name'])) {
                 $sql = "INSERT INTO user(name, email, phone_number, nacionality, birthdate, profile_image, verified, gender, role, password) 
                 VALUES('$name', '$email', '$phone', '$nacionality', '$bdate', '$image', '$verified', '$gender', '$role', '$password')";
 
-                move_uploaded_file($tempname, $folder);
+                move_uploaded_file($tempimage, $folder);
             } else {
                 $sql = "INSERT INTO user(name, email, phone_number, nacionality, birthdate, verified, gender, role, password) 
                 VALUES('$name', '$email', '$phone', '$nacionality', '$bdate', '$verified', '$gender', '$role', '$password')";
@@ -59,10 +53,11 @@ if (isset($_POST['name'])) {
                 echo "<p> Erro ao inserir registo. <br>" . mysqli_error($conn);
             } else {
 
-                echo "<p> Registo inserido com sucesso. </p>";
-                //header("location: ./?p=2");
+                echo "<p style='color:#40bf64;'> Registo inserido com sucesso. </p>";
+                echo "<script>setTimeout(function() { window.location.href = './?p=2'; }, 1000);</script>";
+                exit();
             }
-        } else{
+        } else {
             echo "<p> Esse nº de telemóvel já está registado. </p>";
         }
     } else
@@ -104,10 +99,10 @@ if (isset($_POST['name'])) {
                 <p>Data de nascimento</p>
                 <input type="date" placeholder="Enter Birthdate.." name="bdate" required>
             </div>
-            <div>
+            <!--<div>
                 <p>Imagem de perfil</p>
                 <input type="file" placeholder="Insert Image.." name="image" value="">
-            </div>
+            </div>-->
             <div>
                 <p>Género</p>
                 <select name="gender" required>
@@ -138,47 +133,7 @@ if (isset($_POST['name'])) {
         </div>
         <div style="margin-top: 0.5rem;">
             <input id="submit-button" class="insert-button" style="padding: 0.5rem; width:15%!important;" type="submit" value="Inserir">
-            <a href="?p=2   "><input class="return-button" style="width:15%!important; padding: 0.5rem;" type="button" value="Voltar"></a>
+            <a href="?p=2"><input class="return-button" style="width:15%!important; padding: 0.5rem;" type="button" value="Voltar"></a>
         </div>
     </form>
 </div>
-<script>
-    $(document).ready(function() {
-        var isEmailAvailable = false;
-
-        $('#email').blur(function() {
-            var email = $(this).val();
-            checkEmailAvailability(email);
-        });
-
-        function checkEmailAvailability(email) {
-            $.ajax({
-                url: 'insert_check_email.php',
-                method: 'POST',
-                data: {
-                    email: email
-                },
-                async: true,
-                success: function(response) {
-                    var availability = JSON.parse(response);
-                    var feedbackElement = $('#emailAvailability');
-                    feedbackElement.text(availability.message);
-                    feedbackElement.removeClass();
-                    feedbackElement.addClass(availability.status);
-
-                    isEmailAvailable = (availability.status === 'available');
-
-                    var submitButton = $('#submit-button');
-                    submitButton.prop('disabled', !isEmailAvailable);
-                }
-            });
-        }
-
-        $('#registrationForm').submit(function(event) {
-            if (!isEmailAvailable) {
-                event.preventDefault();
-                alert('Escolha outro email!');
-            }
-        });
-    });
-</script>

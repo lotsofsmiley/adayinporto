@@ -24,8 +24,9 @@ if(isset($_POST['role'])) {
                         $p_sql = "INSERT INTO role_permission(role, permission) VALUES ('$id', '$p')";
                         $p_result = mysqli_query($conn, $p_sql);
                     }
-                    echo "<p> Registo inserido com sucesso. </p>";
-                    header("location: ./?p=5");
+                echo "<p style='color:#40bf64;'> Registo inserido com sucesso. </p>";
+                echo "<script>setTimeout(function() { window.location.href = './?p=5'; }, 1000);</script>";
+                exit();
                 }      
             }
         } else

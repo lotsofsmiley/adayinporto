@@ -1,5 +1,5 @@
 <?php
-if (isset($_POST['category'])) {
+if (isset($_POST['tag'])) {
     $id = $_POST['id'];
     $tag = $_POST['tag'];
     $desc = $_POST['description'];
@@ -15,8 +15,9 @@ if (isset($_POST['category'])) {
         if (!$regist) {
             echo "<p> Erro ao inserir registo. <br>" . mysqli_error($conn);
         } else {
-            echo "<p> Registo inserido com sucesso. </p>";
-            header("location: ./?p=4");
+            echo "<p style='color:#40bf64;'> Registo inserido com sucesso. </p>";
+            echo "<script>setTimeout(function() { window.location.href = './?p=4'; }, 1000);</script>";
+            exit();
         }
     } else
         echo "<p> Esse registo já existe. </p>";

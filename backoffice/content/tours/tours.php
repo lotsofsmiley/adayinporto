@@ -38,13 +38,13 @@ if ($row !== null && isset($row['id'])) {
 }
 echo '<a href="' . $editLink . '" id="editLink" disabled><i class="fa-regular fa-pen-to-square fa-2xl"></i></a>' ?>
 
-<table class="table-hover" style="width:100%; font-size: 20px; margin-top: 1rem; padding-top: 1rem;">
+<table class="table-hover" style="width:100%; font-size: 20px; margin-top: 1rem; padding-top: 1rem; ">
     <thead>
-        <tr>
-            <th scope="col" style="text-align: left; width:55%; border-bottom: solid 1px grey; border-collapse: collapse;">Tour</th>
-            <th scope="col" style="text-align: left; width:15%; border-bottom: solid 1px grey; border-collapse: collapse;">Preço(unit)</th>
-            <th scope="col" style="text-align: left; width:15%; border-bottom: solid 1px grey; border-collapse: collapse;">Fim Previsto</th>
-            <th scope="col" style="text-align: left; width:15%; border-bottom: solid 1px grey; border-collapse: collapse;">Limite Pessoas</th>
+        <tr style="border-bottom: solid 1px grey;">
+            <th scope="col" style="text-align: left; width:55%; border-bottom: solid 1px grey;">Tour</th>
+            <th scope="col" style="text-align: left; width:15%; border-bottom: solid 1px grey;">Preço(unit)</th>
+            <th scope="col" style="text-align: left; width:15%; border-bottom: solid 1px grey;">Fim Previsto</th>
+            <th scope="col" style="text-align: left; width:15%; border-bottom: solid 1px grey;">Limite Pessoas</th>
         </tr>
     </thead>
     <tbody>
@@ -85,8 +85,6 @@ echo '<a href="' . $editLink . '" id="editLink" disabled><i class="fa-regular fa
         } else {
             disableButtons();
         }
-
-        console.log("Selected ID: " + selectedID);
     }
 
     function enableButtons() {

@@ -17,8 +17,9 @@ if (isset($_POST['category'])) {
         if (!$regist) {
             echo "<p> Erro ao inserir registo. <br>" . mysqli_error($conn);
         } else {
-            echo "<p> Registo inserido com sucesso. </p>";
-            header("location: ./?p=7");
+            echo "<p style='color:#40bf64;'> Registo inserido com sucesso. </p>";
+            echo "<script>setTimeout(function() { window.location.href = './?p=7'; }, 1000);</script>";
+            exit();
         }
     } else
         echo "<p> Esse registo já existe. </p>";
@@ -45,11 +46,11 @@ if (isset($_POST['category'])) {
             </div>
             <div>
                 <p>Link</p>
-                <input class="input-long-text" type="text" placeholder="Enter Link.." name="value" required>
+                <input class="input-real-long-text" type="text" placeholder="Enter Link.." name="value" required>
             </div>
             <div>
                 <p>Classe do Ícone</p>
-                <input class="input-long-text" type="text" placeholder="Enter Class.." name="icon_class" required>
+                <input class="input-real-long-text" type="text" placeholder="Enter Class.." name="icon_class" required>
             </div>
         </div>
         <div style="margin-top: 0.5rem;">

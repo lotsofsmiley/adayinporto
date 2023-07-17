@@ -20,7 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             die("echo '<p> Erro ao editar registo. <br>' . mysqli_error($conn)");
 
         } else {
-            header("location: ./?p=4");
+            echo "<p style='color:#40bf64;'> Registo editado com sucesso. </p>";
+            echo "<script>setTimeout(function() { window.location.href = './?p=4'; }, 1000);</script>";
             exit();
         }
     } else

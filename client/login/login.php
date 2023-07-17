@@ -25,7 +25,7 @@
                 </label>
                 <input type="password" name="password" placeholder="Password" id="password" required>
 
-                <a href="../recover_pass/recover.php">
+                <a href="../account/send-email.php">
                     Recuperar palavra-passe.
                 </a>
             </div>

@@ -21,10 +21,10 @@
                 echo "
                 <a href='./?p=21&id=" . $row['id'] . "'>
                     <div class='tour-tour'>
-                        <img class='tours-image' src='resources/_images/" . $row['image'] ."'>
+                        <img class='tours-image' src='resources/_images/" . $row['image'] . "'>
                         <h3 class='tours-title'>" . $row['name'] . "</h3>
                         <p class='tour-description'>" . $row['description'] . "</p>
-                    </div>";
+                    </div> </a>";
 
         echo "</div>"
         ?>

@@ -32,16 +32,28 @@ a {
 }
 
 
+table {
+    border-collapse: collapse;
+}
 
 
-
-input, textarea {
+input, textarea, select {
     margin-block: 10px;
     padding: 5px;
+    font-size: 16px;
+}
+
+input {
+    border: none;
+    border-bottom: 1px solid var(--light-text-reverse-color);
 }
 
 .input-long-text {
     width:350px;
+}
+
+.input-real-long-text {
+    width: 500px;
 }
 
 .insert-button,

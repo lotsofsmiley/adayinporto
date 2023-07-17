@@ -23,12 +23,17 @@ a {
     --medium-background-color: #666;
     --light-background-color: #efefef ;
 
-    --contrast-color: rgba(68, 107, 140, 1);
-    --alt-contrast-color: rgba(83, 129, 172, 1);
+    --gradient1: rgba(83, 142, 193, 1);
+    --gradient2: rgba(96, 174, 247, 1);
+    --contrast-color: linear-gradient(121deg, rgba(83, 142, 193, 1) 0%, rgba(96, 174, 247, 1) 100%);;
+    --alt-contrast-color: rgba(83, 142, 193, 1);
+    --alt-contrast-color-hover: rgba(79, 128, 170, 1);
     --dark-text-color: var(--dark-background-color);
     --medium-text-color: var(--medium-background-color);
     --lighter-text-reverse-color: var(--light-background-color);
     --light-text-reverse-color: #ddd;
+    
+    --border-color: #777;
 }
 
 .header {
@@ -170,8 +175,8 @@ nav img{
 }
 
 .header-button:hover{
-    border: 1px solid var(--contrast-color);
-    background: var(--contrast-color);
+    border: 1px solid var(--alt-contrast-color);
+    background: var(--alt-contrast-color);
     transition: 1s;
 }
 

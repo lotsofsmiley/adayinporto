@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = mysqli_real_escape_string($conn, $name);
     $desc = mysqli_real_escape_string($conn, $desc);
 
-    $checkdb = "SELECT * FROM tour WHERE name='$name'";
+    $checkdb = "SELECT * FROM tour WHERE name='$name' and id != '$id'";
     $result = mysqli_query($conn, $checkdb);
     if ($result && mysqli_num_rows($result) == 0) {
         $sql = "UPDATE tour SET 
@@ -25,7 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!$result) {
             die("echo '<p> Erro ao editar registo. <br>' . mysqli_error($conn)");
         } else {
-            header("location: ./?p=1");
+            echo "<p style='color:#40bf64;'> Registo editado com sucesso. </p>";
+            echo "<script>setTimeout(function() { window.location.href = './?p=1'; }, 1000);</script>";
             exit();
         }
     } else

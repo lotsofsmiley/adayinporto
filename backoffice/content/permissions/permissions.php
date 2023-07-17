@@ -81,8 +81,6 @@ echo '<a href="' . $editLink . '" id="editLink" disabled><i class="fa-regular fa
         } else {
             disableButtons();
         }
-
-        console.log("Selected ID: " + selectedID);
     }
 
     function enableButtons() {

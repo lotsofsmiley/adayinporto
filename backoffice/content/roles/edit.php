@@ -55,7 +55,7 @@ if(isset($_POST['role'])) {
 
 
 
-        $checkdb = "SELECT * FROM role WHERE name='$role'";
+        $checkdb = "SELECT * FROM role WHERE name='$role' where id != '$id'";
         $result = mysqli_query($conn, $checkdb);
         if ($result && mysqli_num_rows($result) == 0) {
             $sql = "INSERT INTO role(name) VALUES('$role')";
@@ -70,8 +70,8 @@ if(isset($_POST['role'])) {
                         $p_sql = "INSERT INTO role_permission(role, permission) VALUES ('$id', '$p')";
                         $p_result = mysqli_query($conn, $p_sql);
                     }
-                    echo "<p> Registo inserido com sucesso. </p>";
-                    header("location: ./?p=5");
+                    echo "<p style='color:#40bf64;'> Registo editado com sucesso. </p>";
+                    echo "<script>setTimeout(function() { window.location.href = './?p=5'; }, 1000);</script>";
                 }      
             }
         } else

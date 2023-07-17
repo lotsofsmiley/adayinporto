@@ -1,6 +1,6 @@
 <?php
-$showtour = "SELECT * FROM user ORDER BY name";
-$show = mysqli_query($conn, $showtour);
+$showapp = "SELECT a.id, a.id_user as id_user, u.name as user, a.id_tour as id_tour, t.name as tour, a.start, a.book_date as book, a.payment_date as payment, a.cancel_date as cancel, a.reason, a.number_people FROM appointment a JOIN user u ON u.id = a.id_user JOIN tour t ON t.id = a.id_tour order by a.start";
+$show = mysqli_query($conn, $showapp);
 if (mysqli_num_rows($show) > 0) {
     $row = mysqli_fetch_array($show);
 } else {
@@ -23,16 +23,16 @@ if (mysqli_num_rows($show) > 0) {
     }
 </style>
 
-<h2>Tabela User - Secundária</h2>
-<p>Manutenção dos utilizadores no site.</p>
+<h2>Tabela Appointment - Secundária</h2>
+<p>Manutenção das marcações no site.</p>
 <br>
 
-<a href="./?p=21" class="insert-button">Inserir Utilizador</a>
+<a href="./?p=31" class="insert-button">Inserir Marcação</a>
 <a id="delLink" disabled><i class="fa-regular fa-trash-can fa-2xl" onclick="confirmDelete(<?php echo $row['id']; ?>)"></i></a>
 
 <?php
 if ($row !== null && isset($row['id'])) {
-    $editLink = './?p=25&id=' . $row['id'] . '&operation=editar';
+    $editLink = './?p=35&id=' . $row['id'] . '&operation=editar&id_tour=' . $row['id_tour'] . '&id_user=' . $row['id_user'] . '&start=' . $row['start'] . '';
 } else {
     $editLink = null;
 }
@@ -41,21 +41,24 @@ echo '<a href="' . $editLink . '" id="editLink" disabled><i class="fa-regular fa
 <table class="table-hover" style="width:100%; font-size: 20px; margin-top: 1rem; padding-top: 1rem;">
     <thead>
         <tr>
-            <th scope="col" style="text-align: left; width:40%; border-bottom: solid 1px grey; border-collapse: collapse;">Nome</th>
-            <th scope="col" style="text-align: left; width:30%; border-bottom: solid 1px grey; border-collapse: collapse;">Email</th>
-            <th scope="col" style="text-align: left; width:30%; border-bottom: solid 1px grey; border-collapse: collapse;">Nacionalidade</th>
+            <th scope="col" style="text-align: left; width:20%; border-bottom: solid 1px grey; border-collapse: collapse;">Nome</th>
+            <th scope="col" style="text-align: left; width:60%; border-bottom: solid 1px grey; border-collapse: collapse;">Tour</th>
+            <th scope="col" style="text-align: left; width:10%; border-bottom: solid 1px grey; border-collapse: collapse;">Data</th>
+            <th scope="col" style="text-align: left; width:10%; border-bottom: solid 1px grey; border-collapse: collapse;">Ativo</th>
         </tr>
     </thead>
     <tbody>
         <?php
         if ($row !== null) {
             do {
+                $cancelStatus = !isset($row['cancel']) || $row['cancel'] === '0000-00-00 00:00:00' ? 'S' : 'N';
         ?>
                 <tr id="tr_<?php echo $row['id']; ?>" onclick="storeID(<?php echo $row['id']; ?>)">
                     <?php
-                    echo "<td>" . $row['name'] . "</td>";
-                    echo "<td>" . $row['email'] . "</td>";
-                    echo "<td>" . $row['nacionality'] . "</td>";
+                    echo "<td>" . $row['user'] . "</td>";
+                    echo "<td>" . $row['tour'] . "</td>";
+                    echo "<td>" . $row['start'] . "</td>";
+                    echo "<td>" . $cancelStatus . "</td>";
                     ?>
                 </tr>
         <?php
@@ -69,6 +72,8 @@ echo '<a href="' . $editLink . '" id="editLink" disabled><i class="fa-regular fa
 </table>
 
 <script>
+    var selectedID = null;
+
     function storeID(id) {
         var prevSelectedRow = document.querySelector('.selected');
         if (prevSelectedRow) {
@@ -88,7 +93,7 @@ echo '<a href="' . $editLink . '" id="editLink" disabled><i class="fa-regular fa
     function enableButtons() {
         document.getElementById("delLink").removeAttribute("disabled");
         document.getElementById("editLink").removeAttribute("disabled");
-        document.getElementById("editLink").href = './?p=25&id=' + encodeURIComponent(selectedID) + '&operation=editar';
+        document.getElementById("editLink").href = './?p=35&id=' + encodeURIComponent(selectedID) + '&operation=editar';
     }
 
     function disableButtons() {
@@ -100,7 +105,7 @@ echo '<a href="' . $editLink . '" id="editLink" disabled><i class="fa-regular fa
         var selectedID = document.querySelector('.selected').id;
         selectedID = selectedID.split("_")[1];
         if (confirm("Tem a certeza?")) {
-            var deleteURL = './?p=22&id=' + encodeURIComponent(selectedID) + '&operation=eliminar';
+            var deleteURL = './?p=32&id=' + encodeURIComponent(selectedID) + '&operation=eliminar';
             window.location.href = deleteURL;
         }
     }

@@ -25,7 +25,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         <h1>Airbnb 2019 Douro Most Unique Experience</h1>
         <p class="paragraph-description">Prepare-se para embarcar numa viagem de descoberta e paixão com aDayinDouro. Fundada em 2011 pelo visionário Manuel Guimarães,
             um engenheiro de computação com um coração apaixonado, esta empresa familiar é muito mais do que apenas uma empresa - é uma celebração de emoções e laços familiares.<br>
-            Prove connosco o autêntico Douro Valleu para fazer parte da Most Authentic Access Experience by Airbnb em 2019!</p>
+            Prove connosco o autêntico Vale do Douro para fazer parte da Experiência mais autêntica do Douro em 2019!</p>
         <a href="#tours" class="header-button">Tours</a>
     </div>
 </section>
@@ -60,56 +60,3 @@ while ($row = mysqli_fetch_assoc($result)) {
         } ?>
     </div>
 </section>
-
-<footer class="footer" id="contact">
-    <div class="footer-column footer-about">
-        <!--<h3 class="company-title">aDayinPorto</h3>-->
-        <div class="logo-container">
-            <img src="./resources/_images/full_nobg_logo.png" alt="ola" class="logo-image noSelect">
-        </div>
-        <div class="footer-description">
-            Prepare-se para embarcar numa viagem de descoberta e paixão com aDayinDouro. Fundada em 2011 pelo visionário Manuel Guimarães, um engenheiro informático de coração apaixonado, esta empresa familiar é muito mais do que uma empresa - é uma celebração de emoções e laços familiares.<br>
-            Prove connosco o autêntico Douro Valleu para fazer parte da Most Authentic Access Experience by Airbnb em 2019!
-        </div>
-    </div>
-
-    <!--<div class="footer-column footer-legal">
-                <a class="footer-policies">Privacy Policy & Terms and Conditions</a>
-            </div>-->
-
-    <div class="footer-column footer-contact">
-        <h3 class="footer-title">Contacte-nos!</h3>
-        <a class="footer-contact-phone" target="_blank" href="tel:+351 916 541 852">
-            <i class="footer-contact-icon fa fa-phone"></i>
-            (+351) 916 541 852
-        </a>
-
-        <a class="footer-contact-mail" target="_blank" href="mailto:adayinporto@gmail.com">
-            <i class="footer-contact-icon fa fa-envelope"></i>
-            adayinporto@gmail.com
-        </a>
-    </div>
-
-    <div class="footer-column footer-contact">
-        <h3 class="footer-title">Visite as nossas redes sociais!</h3>
-        <!--
-        <a class="social-platform" target="_blank" href="https://www.tripadvisor.com/Attraction_Review-g189180-d4137824-Reviews-Taste_Porto_Food_Tours-Porto_Porto_District_Northern_Portugal.html">
-            <i class="social-platform-icon fab fa-tripadvisor"></i>
-        </a>
-        <a class="social-platform" target="_blank" href="">
-            <i class="social-platform-icon fab fa-twitter"></i>
-        </a>
-        <a class="social-platform" style="margin-right:5px;" target="_blank" href="https://www.youtube.com/channel/UCWWG4QPG8QFUJVZHKcPjcHg">
-            <i class="social-platform-icon fa fa-youtube"></i>
-        </a>
-        -->
-        <a class="social-platform" target="_blank" href="https://www.facebook.com/adayinporto/">
-            <i class="social-platform-icon fa fa-facebook-square"></i>
-        </a>
-        <a class="social-platform" target="_blank" href="https://www.instagram.com/adayindouro/">
-            <i class="social-platform-icon fa fa-instagram"></i>
-        </a>
-
-
-    </div>
-</footer>

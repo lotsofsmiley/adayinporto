@@ -62,7 +62,7 @@ require('./assets/scripts/db/connect.php');
                 <li class="menu-sub-item responsive-profile">
                     <a class="noSelect" href="./client/account/index.php">
                         <span class="material-icons-outlined"> manage_accounts </span>
-                        PROFILE
+                        PERFIL
                     </a>
                 </li>
                 <li class="menu-sub-item responsive-profile">
@@ -80,13 +80,13 @@ require('./assets/scripts/db/connect.php');
                         <ul class="dropdown">
                             <li class="sub-item">
                                 <a class="noSelect" href="./client/account/index.php">
-                                    <span class="material-icons-outlined"> manage_accounts </span>
-                                    PROFILE
+                                    <span class="material-icons-outlined" style="margin-right:6px;"> manage_accounts </span>
+                                    PERFIL
                                 </a>
                             </li>
                             <li class="sub-item">
                                 <a class="noSelect" href="./client/login/logout.php">
-                                    <span class="material-icons-outlined"> logout </span>
+                                    <span class="material-icons-outlined" style="margin-right:6px;"> logout </span>
                                     LOG OUT
                                 </a>
                             </li>
@@ -113,9 +113,18 @@ require('./assets/scripts/db/connect.php');
             case 2:
                 include("./tours/index.php");
                 break;
-                case 21:
-                    include("./tours/tour.php");
-                    break;
+            case 21:
+                include("./tours/tour/index.php");
+                break;
+            case 22:
+                include("./tours/checkout/index.php");
+                break;
+            case 23:
+                include("./tours/checkout/payment.php");
+                break;
+            case 24:
+                include("./tours/checkout/insert.php");
+                break;
 
             case 3:
                 include("./contact/index.php");
@@ -134,6 +143,58 @@ require('./assets/scripts/db/connect.php');
         }
         ?>
     </section>
+    <footer class="footer" id="contact">
+        <div class="footer-column footer-about">
+            <!--<h3 class="company-title">aDayinPorto</h3>-->
+            <div class="logo-container">
+                <img src="./resources/_images/full_nobg_logo.png" alt="adip" class="logo-image noSelect">
+            </div>
+            <div class="footer-description">
+                Prepare-se para embarcar numa viagem de descoberta e paixão com aDayinDouro. Fundada em 2011 pelo visionário Manuel Guimarães, um engenheiro informático de coração apaixonado, esta empresa familiar é muito mais do que uma empresa - é uma celebração de emoções e laços familiares.<br>
+                Prove connosco o autêntico Vale do Douro para fazer parte da Experiência mais autêntica do Douro em 2019!
+            </div>
+        </div>
+
+        <!--<div class="footer-column footer-legal">
+                <a class="footer-policies">Privacy Policy & Terms and Conditions</a>
+            </div>-->
+
+        <div class="footer-column footer-contact">
+            <h3 class="footer-title">Contacte-nos!</h3>
+            <a class="footer-contact-phone" target="_blank" href="tel:+351 916 541 852">
+                <i class="footer-contact-icon fa fa-phone"></i>
+                (+351) 916 541 852
+            </a>
+
+            <a class="footer-contact-mail" target="_blank" href="mailto:adayinporto@gmail.com">
+                <i class="footer-contact-icon fa fa-envelope"></i>
+                adayinporto@gmail.com
+            </a>
+        </div>
+
+        <div class="footer-column footer-contact">
+            <h3 class="footer-title">Visite as nossas redes sociais!</h3>
+            <!--
+        <a class="social-platform" target="_blank" href="https://www.tripadvisor.com/Attraction_Review-g189180-d4137824-Reviews-Taste_Porto_Food_Tours-Porto_Porto_District_Northern_Portugal.html">
+            <i class="social-platform-icon fab fa-tripadvisor"></i>
+        </a>
+        <a class="social-platform" target="_blank" href="">
+            <i class="social-platform-icon fab fa-twitter"></i>
+        </a>
+        <a class="social-platform" style="margin-right:5px;" target="_blank" href="https://www.youtube.com/channel/UCWWG4QPG8QFUJVZHKcPjcHg">
+            <i class="social-platform-icon fa fa-youtube"></i>
+        </a>
+        -->
+            <a class="social-platform" target="_blank" href="https://www.facebook.com/adayinporto/">
+                <i class="social-platform-icon fa fa-facebook-square"></i>
+            </a>
+            <a class="social-platform" target="_blank" href="https://www.instagram.com/adayindouro/">
+                <i class="social-platform-icon fa fa-instagram"></i>
+            </a>
+
+
+        </div>
+    </footer>
 
 
 

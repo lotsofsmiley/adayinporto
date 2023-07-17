@@ -46,11 +46,11 @@ if (!$result) {
             </div>
             <div>
                 <p>Link</p>
-                <input class="input-long-text" type="text" placeholder="Enter Link.." name="value" value="<?= $row['value'] ?>" required>
+                <input class="input-real-long-text" type="text" placeholder="Enter Link.." name="value" value="<?= $row['value'] ?>" required>
             </div>
             <div>
                 <p>Classe do Ícone</p>
-                <input class="input-long-text" type="text" placeholder="Enter Class.." name="icon_class" value="<?= $row['icon_class'] ?>" required>
+                <input class="input-real-long-text" type="text" placeholder="Enter Class.." name="icon_class" value="<?= $row['icon_class'] ?>" required>
             </div>
         </div>
         <div style="margin-top: 0.5rem;">

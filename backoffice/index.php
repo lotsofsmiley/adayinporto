@@ -4,7 +4,7 @@
 
 if (!isset($_SESSION))
     session_start();
-$op = 1;
+$op = 3;
 if (isset($_GET['p']))
     $op = $_GET['p'];
 
@@ -53,8 +53,8 @@ require('../assets/scripts/db/connect.php');
     </section>
     <section>
         <div class="sidenav">
-            <a class="noSelect" href="./?p=1">TOURS</a>
             <a class="noSelect" href="./?p=3">BOOKINGS</a>
+            <a class="noSelect" href="./?p=1">TOURS</a>
             <a class="noSelect" href="./?p=2">USERS</a>
             <a class="noSelect" href="./?p=6">GENDER</a>
             <!--<a class="noSelect" href="./?p=8">LANGUAGES</a>-->
@@ -99,19 +99,19 @@ require('../assets/scripts/db/connect.php');
                     break;
 
                 case 3:
-                    include("./content/bookings/bookings.php");
+                    include("./content/appointments/appointments.php");
                     break;
                 case 31:
-                    include("./content/bookings/insert.php");
+                    include("./content/appointments/insert.php");
                     break;
                 case 32:
-                    include("./content/bookings/delete.php");
+                    include("./content/appointments/delete.php");
                     break;
                 case 34:
-                    include("./content/bookings/edit.php");
+                    include("./content/appointments/edit.php");
                     break;
                 case 35:
-                    include("./content/bookings/editForm.php");
+                    include("./content/appointments/editForm.php");
                     break;
 
                 case 4:

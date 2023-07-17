@@ -18,8 +18,9 @@ if (isset($_POST['name'])) {
         if (!$regist) {
             echo "<p> Erro ao inserir registo. <br>" . mysqli_error($conn);
         } else {
-            echo "<p> Registo inserido com sucesso. </p>";
-            header("location: ./?p=1");
+            echo "<p style='color:#40bf64;'> Registo inserido com sucesso. </p>";
+            echo "<script>setTimeout(function() { window.location.href = './?p=1'; }, 1000);</script>";
+            exit();
         }
     } else
         echo "<p> Esse registo já existe. </p>";
