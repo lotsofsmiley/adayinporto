@@ -75,7 +75,7 @@ if (isset($_POST['date'])) {
                         " . ucfirst($weekday) . ", " . $formatted_date . "
                     </div>
                     <div class='info-time'>
-                        8:15/9:15 --> " . date('H:i', strtotime($row['ending'])) . "
+                        8:30/9:00 --> " . date('H:i', strtotime($row['ending'])) . "
                     </div>
                     <div class='info-tickets'>
                         " . $tickets_left . " Bilhetes disponíveis

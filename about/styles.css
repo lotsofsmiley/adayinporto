@@ -1,1 +1,43 @@
 @import url(../resources/css/styles.css);
+
+:root {
+    
+}
+
+/****************************************************************** ABOUT US ******************************************************************/
+
+.about-header {
+    min-height: 70vh;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(../resources/_images/porto3.jpg);
+}
+
+.about-text-box {
+    width: 75%;
+    color: #fff;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.about-text-box h1 {
+    font-size: 62px;
+}
+
+.about-text-box p {
+    margin: 10px 0 40px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.section-about {
+    width: 90%;
+    margin: auto;
+    padding-block: 100px;
+    display: flex;
+}

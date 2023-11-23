@@ -37,13 +37,14 @@ $rowbody = mysqli_fetch_assoc($resultbody);
     <section class="tour-main">
         <ul class="tour-info">
             <li class="tour-data max-guests">
-                Max <?= $row['tour_limit'] ?> guests
+                <?php //Max <?= $row['tour_limit'] guests ?>
+                Small Groups
             </li>
             <li class="tour-data price-unit">
                 <?= $row['price_unit'] ?> €
             </li>
             <li class="tour-data starting">
-                Starting between 8:15/9:15
+                Starting between 8:30/9:00
             </li>
             <li class="tour-data ending">
                 Ending around <?= date("H:i", strtotime($row['ending'])) ?>
@@ -155,7 +156,7 @@ $rowbody = mysqli_fetch_assoc($resultbody);
                                     " . ucfirst($weekday) . ", " . $formatted_date . "
                                 </div>
                                 <div class='info-time'>
-                                    8:15/9:15 --> " . date('H:i', strtotime($row['ending'])) . "
+                                    8:30/9:00 --> " . date('H:i', strtotime($row['ending'])) . "
                                 </div>
                                 <div class='info-tickets'>
                                     " . $tickets_left . " Bilhetes disponíveis

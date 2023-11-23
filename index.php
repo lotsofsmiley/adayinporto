@@ -15,7 +15,6 @@ require('./assets/scripts/db/connect.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>aDayinPorto</title>
     <link rel="stylesheet" href="./resources/css/styles.css">
-    <link rel="stylesheet" href="./tours/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
@@ -52,13 +51,16 @@ require('./assets/scripts/db/connect.php');
                 <li class="nav-items menu-sub-item"></li>
                 <li class="nav-items menu-sub-item"><a class="noSelect" href="./?p=0">HOME</a></li>
                 <!-- <li class="nav-items menu-sub-item"><a class="noSelect" href="./?p=1">ABOUT</a></li>-->
-                <li class="nav-items menu-sub-item"><a class="noSelect" href="index.php#about">ABOUT</a></li>
-                <li class="nav-items menu-sub-item"><a class="noSelect" href="./?p=2">TOURS</a></li>
+                <li class="nav-items menu-sub-item"><a class="noSelect" href="./?p=1">SOBRE NÓS</a></li>
+                <li class="nav-items menu-sub-item"><a class="noSelect" href="index.php#tours">TOURS</a></li>
+                <!--<li class="nav-items menu-sub-item"><a class="noSelect" href="./?p=2">TOURS</a></li>-->
                 <!-- <li class="nav-items menu-sub-item"><a class="noSelect" href="./?p=3">CONTACT</a></li> -->
-                <li class="nav-items menu-sub-item"><a class="noSelect" href="index.php#contact">CONTACT</a></li>
-                <!-- <li class="nav-items menu-sub-item"><a class="noSelect" href="./?p=6">FAQ's</a></li> -->
+                <li class="nav-items menu-sub-item"><a class="noSelect" href="index.php#contact">CONTACTO</a></li>
                 <li class="nav-items menu-sub-item"></li>
-
+                <li class="nav-items book-button"><a class="noSelect" href="index.php#tours">RESERVA JÁ</a></li>
+                <!-- <li class="nav-items menu-sub-item"><a class="noSelect" href="./?p=6">FAQ's</a></li> -->
+                <?php /*
+                
                 <li class="menu-sub-item responsive-profile">
                     <a class="noSelect" href="./client/account/index.php">
                         <span class="material-icons-outlined"> manage_accounts </span>
@@ -92,8 +94,8 @@ require('./assets/scripts/db/connect.php');
                             </li>
                         </ul>
                     </li>
-                <?php } ?>
-
+                <?php } 
+                */ ?>
             </ul>
         </div>
         <i class="fa fa-bars" onclick="openmenu()"></i>
