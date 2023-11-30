@@ -13,7 +13,7 @@ require('./assets/scripts/db/connect.php');
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>aDayinPorto</title>
+    <title>aDayinDouro</title>
     <link rel="stylesheet" href="./resources/css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

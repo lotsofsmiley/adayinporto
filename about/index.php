@@ -11,5 +11,29 @@
 </section>
 
 <section class="section-about">
+    <div class="about-section-row">
+        <div class="about-section-row-img-col">
+            aaa
+        </div>
+        <div class="about-section-row-text-col">
+            aa
+        </div>
+    </div>
+    <div class="about-section-row">
+        <div class="about-section-row-text-col">
+            aa
+        </div>
+        <div class="about-section-row-img-col">
+            aaa            
+        </div>
+    </div>
+    <div class="about-section-row">
+        <div class="about-section-row-img-col">
+            aaa
+        </div>
+        <div class="about-section-row-text-col">
+            aa
+        </div>
+    </div>
 
 </section>

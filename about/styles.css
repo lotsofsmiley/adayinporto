@@ -39,5 +39,20 @@
     width: 90%;
     margin: auto;
     padding-block: 100px;
+}
+
+.about-section-row {
+    width: calc(100% - 4rem);
     display: flex;
+    text-align: center;
+    height: 400px;
+    padding: 2rem;
+}
+
+.about-section-row-img-col {
+    width: 40%;
+}
+
+.about-section-row-text-col {
+    width: 60%;
 }
