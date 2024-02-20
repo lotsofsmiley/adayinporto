@@ -23,7 +23,7 @@ a {
     --dark-background-color: #0f1316;
     --darkish-background-color: #151a1e;
     --medium-background-color: #666;
-    --light-background-color: #efefef ;
+    --light-background-color: rgba(0, 0, 0, 0.05);
 
     --gradient1: rgba(83, 142, 193, 1);
     --gradient2: rgba(96, 174, 247, 1);
@@ -66,7 +66,7 @@ h3{
 
 .paragraph-description{
     color: #777;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 300;
     line-height: 24px;
     padding: 10px;
@@ -408,7 +408,7 @@ nav .fa{
 
 .tours-col{
     flex-basis: 31%;
-    background: #fff3f3;
+    background: var(--light-background-color);
     border-radius: 10px;
     margin-bottom: 6%;
     padding: 20px 12px;

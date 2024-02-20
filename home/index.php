@@ -22,7 +22,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 <section>
     <div class="text-box">
-        <h1>"Airbnb 2019 Douro Most Unique Experience"</h1>
+        <h1>"A experiência Airbnb no Douro mais autêntica de 2019"</h1>
         <p class="paragraph-description">Prepare-se para embarcar numa viagem de descoberta e paixão com aDayinDouro. Fundada em 2011 pelo visionário Manuel Guimarães,
             um engenheiro de computação com um coração apaixonado, esta empresa familiar é muito mais do que apenas uma empresa - é uma celebração de emoções e laços familiares.<br>
             Prove connosco o autêntico Vale do Douro para fazer parte da Experiência mais autêntica do Douro em 2019!</p>

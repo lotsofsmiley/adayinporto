@@ -31,28 +31,61 @@
 
 .about-text-box p {
     margin: 10px 0 40px;
-    font-size: 14px;
+    font-size: 16px;
     color: #fff;
 }
 
-.section-about {
+.about-us {
     width: 90%;
     margin: auto;
     padding-block: 100px;
 }
 
-.about-section-row {
-    width: calc(100% - 4rem);
+.about-us-row {
+    width: calc(100% - 10rem);
     display: flex;
     text-align: center;
     height: 400px;
-    padding: 2rem;
+    padding: 1rem 5rem;
 }
 
-.about-section-row-img-col {
+.about-us-row-img-col {
     width: 40%;
+    margin: auto;
+    border: 1px solid black;
+    height:400px;
 }
 
-.about-section-row-text-col {
+.about-us-row-text-col {
     width: 60%;
+    margin: auto;
+    padding: 1rem 4rem;
+    text-align: justify;
+    line-height: 1.75rem;
+}
+
+.about-employees {
+
+}
+
+.about-employees-header {
+    height: fit-content;
+    background-color: var(--light-background-color);
+    text-align: center;
+    padding: 3rem;
+    box-shadow: 0 0 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+.about-employees-title {}
+
+.about-employees-title-description {
+
+}
+
+.about-employees-row {
+    padding-block: 4rem;
+}
+
+.about-employees-row-col {
+
 }

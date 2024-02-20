@@ -5,6 +5,22 @@ if (isset($_GET['p']))
     $op = $_GET['p'];
 
 require('./assets/scripts/db/connect.php');
+
+$sql = "SELECT * FROM social_media";
+$result = mysqli_query($conn, $sql);
+
+if (!$result) {
+    echo 'Falha na consulta: ' . mysqli_error($conn);
+    exit();
+}
+
+$socials = array();
+
+while ($row = mysqli_fetch_assoc($result)) {
+    $socials[] = $row;
+}
+
+
 ?>
 
 
@@ -176,25 +192,30 @@ require('./assets/scripts/db/connect.php');
 
         <div class="footer-column footer-contact">
             <h3 class="footer-title">Visite as nossas redes sociais!</h3>
+            <?php foreach ($socials as $social) {
+                echo "
+                <a class='social-platform' target='_blank' href='" . $social['value'] . "'>
+                    <i class='" . $social['icon_class'] . "'></i>
+                </a>";
+            } ?>
+
             <!--
-        <a class="social-platform" target="_blank" href="https://www.tripadvisor.com/Attraction_Review-g189180-d4137824-Reviews-Taste_Porto_Food_Tours-Porto_Porto_District_Northern_Portugal.html">
-            <i class="social-platform-icon fab fa-tripadvisor"></i>
-        </a>
-        <a class="social-platform" target="_blank" href="">
-            <i class="social-platform-icon fab fa-twitter"></i>
-        </a>
-        <a class="social-platform" style="margin-right:5px;" target="_blank" href="https://www.youtube.com/channel/UCWWG4QPG8QFUJVZHKcPjcHg">
-            <i class="social-platform-icon fa fa-youtube"></i>
-        </a>
-        -->
+            <a class="social-platform" target="_blank" href="https://www.tripadvisor.com/Attraction_Review-g189180-d4137824-Reviews-Taste_Porto_Food_Tours-Porto_Porto_District_Northern_Portugal.html">
+                <i class="social-platform-icon fab fa-tripadvisor"></i>
+            </a>
+            <a class="social-platform" target="_blank" href="">
+                <i class="social-platform-icon fab fa-twitter"></i>
+            </a>
+            <a class="social-platform" style="margin-right:5px;" target="_blank" href="https://www.youtube.com/channel/UCWWG4QPG8QFUJVZHKcPjcHg">
+                <i class="social-platform-icon fa fa-youtube"></i>
+            </a>
             <a class="social-platform" target="_blank" href="https://www.facebook.com/adayinporto/">
                 <i class="social-platform-icon fa fa-facebook-square"></i>
             </a>
             <a class="social-platform" target="_blank" href="https://www.instagram.com/adayindouro/">
                 <i class="social-platform-icon fa fa-instagram"></i>
             </a>
-
-
+            -->
         </div>
     </footer>
 
