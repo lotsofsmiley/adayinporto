@@ -1,3 +1,20 @@
+<?php
+    $sql = "SELECT * FROM employees WHERE language = 1";
+    $result = mysqli_query($conn, $sql);
+    
+    if (!$result) {
+        echo 'Falha na consulta: ' . mysqli_error($conn);
+        exit();
+    }
+    
+    $emp = array();
+    
+    while ($row = mysqli_fetch_assoc($result)) {
+        $emp[] = $row;
+    }
+?>
+
+
 <section class="about-header">
 
 </section>
@@ -60,7 +77,26 @@
         </div>
     </div>
 
-    <div class="about-employees-row">
-        aaaa
+    <div class="about-employees-team">
+        <?php foreach ($emp as $e) {
+        echo "
+        <div class='about-employees-card'>
+            <img class='about-employees-card-image' src='" . $e['img'] . "'>
+            <div class='about-employees-card-info'>
+                <h2 class='about-employees-card-info-name'>" . $e['name'] . "</h2>
+                <h3 class='about-employees-card-info-role'>" . $e['role'];
+                
+                if(isset($e['family_role'])) {
+                    echo " - " . $e['family_role'];
+                }
+                
+                echo "</h3>
+                <div class='about-employees-card-info-text'>
+                    ". $e['text'] ."
+                </div>
+            </div>
+        </div>
+        ";
+        } ?>
     </div>
 </section>

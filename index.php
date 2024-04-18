@@ -16,7 +16,6 @@ if (isset($_SESSION['selected_language'])) {
     require_once 'lang_en.php';
 }
 
-
 require('./assets/scripts/db/connect.php');
 
 
@@ -49,6 +48,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <script src="https://kit.fontawesome.com/ce285c7720.js" crossorigin="anonymous"></script>
     <script src="path/to/jquery.min.js"></script>
