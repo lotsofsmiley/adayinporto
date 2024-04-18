@@ -4,7 +4,21 @@ $op = 0;
 if (isset($_GET['p']))
     $op = $_GET['p'];
 
+if (isset($_SESSION['selected_language'])) {
+    $selected_language = $_SESSION['selected_language'];
+
+    if ($selected_language === 'en') {
+        require_once 'lang_en.php';
+    } elseif ($selected_language === 'pt') {
+        require_once 'lang_pt.php';
+    }
+} else {
+    require_once 'lang_en.php';
+}
+
+
 require('./assets/scripts/db/connect.php');
+
 
 $sql = "SELECT * FROM social_media";
 $result = mysqli_query($conn, $sql);
@@ -74,6 +88,44 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <li class="nav-items menu-sub-item"><a class="noSelect" href="index.php#contact">CONTACTO</a></li>
                 <li class="nav-items menu-sub-item"></li>
                 <li class="nav-items book-button"><a class="noSelect" href="index.php#tours">RESERVA JÁ</a></li>
+
+                <li class="nav-items nav-profile">
+                    <img src="./resources/_images/user.png" class="profile" />
+                    <ul class="dropdown">
+                        <li class="sub-item">
+                            <a class="noSelect" href="./client/account/index.php">
+                                <span class="material-icons-outlined" style="margin-right:6px;"> manage_accounts </span>
+                                PERFIL
+                            </a>
+                        </li>
+                        <li class="sub-item">
+                            <a class="noSelect" href="./client/login/logout.php">
+                                <span class="material-icons-outlined" style="margin-right:6px;"> logout </span>
+                                LOG OUT
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-items nav-language">
+                    <?php
+
+                    ?>
+                    <img src="./resources/_images/languages/pt.png" class="profile" />
+                    <ul class="dropdown">
+                        <li class="sub-item">
+                            <a class="noSelect" href="./client/account/index.php">
+                                <span class="material-icons-outlined" style="margin-right:6px;"> manage_accounts </span>
+                                PERFIL
+                            </a>
+                        </li>
+                        <li class="sub-item">
+                            <a class="noSelect" href="./client/login/logout.php">
+                                <span class="material-icons-outlined" style="margin-right:6px;"> logout </span>
+                                LOG OUT
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <!-- <li class="nav-items menu-sub-item"><a class="noSelect" href="./?p=6">FAQ's</a></li> -->
                 <?php /*
                 
