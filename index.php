@@ -4,37 +4,48 @@ $op = 0;
 if (isset($_GET['p']))
     $op = $_GET['p'];
 
-if (isset($_SESSION['selected_language'])) {
-    $selected_language = $_SESSION['selected_language'];
-
-    if ($selected_language === 'en') {
-        require_once 'lang_en.php';
-    } elseif ($selected_language === 'pt') {
-        require_once 'lang_pt.php';
-    }
-} else {
-    require_once 'lang_en.php';
-}
-
+// Include database connection
 require('./assets/scripts/db/connect.php');
-
 
 $sql = "SELECT * FROM social_media";
 $result = mysqli_query($conn, $sql);
+$sql2 = "SELECT * FROM language";
+$result2 = mysqli_query($conn, $sql2);
 
-if (!$result) {
+if (!$result || !$result2) {
     echo 'Falha na consulta: ' . mysqli_error($conn);
     exit();
 }
 
 $socials = array();
+$languages = array();
 
 while ($row = mysqli_fetch_assoc($result)) {
     $socials[] = $row;
 }
 
+while ($row = mysqli_fetch_assoc($result2)) {
+    $languages[] = $row;
+}
 
+$language_file_name = './resources/view/languages/lang_eng.php';
+
+if (isset($_SESSION['selected_language'])) {
+    $selected_language = $_SESSION['selected_language'];
+
+    foreach ($languages as $language) {
+        if ($language['language_code'] === $selected_language) {
+            $language_file_name = $language['file_name'];
+            $language_image_src = $language['']
+            break;
+        }
+    }
+}
+
+require_once "$language_file_name";
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -89,7 +100,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <li class="nav-items menu-sub-item"></li>
                 <li class="nav-items book-button"><a class="noSelect" href="index.php#tours">RESERVA JÁ</a></li>
 
-                <li class="nav-items nav-profile">
+                <!--<li class="nav-items nav-profile">
                     <img src="./resources/_images/user.png" class="profile" />
                     <ul class="dropdown">
                         <li class="sub-item">
@@ -105,12 +116,10 @@ while ($row = mysqli_fetch_assoc($result)) {
                             </a>
                         </li>
                     </ul>
-                </li>
-                <li class="nav-items nav-language">
-                    <?php
+                </li>-->
 
-                    ?>
-                    <img src="./resources/_images/languages/pt.png" class="profile" />
+                <li class="nav-items nav-language">
+                    <img src="<?php echo $language_image_src; ?>" class="profile" />
                     <ul class="dropdown">
                         <li class="sub-item">
                             <a class="noSelect" href="./client/account/index.php">
